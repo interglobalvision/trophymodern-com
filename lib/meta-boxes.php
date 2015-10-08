@@ -39,5 +39,25 @@ function igv_cmb_metaboxes() {
    * Reference: https://github.com/WebDevStudios/CMB2/blob/master/example-functions.php
 	 */
 
+	 	$post_metabox = new_cmb2_box( array(
+  		'id'            => $prefix . 'post_metabox',
+  		'title'         => __( 'Post Metabox', 'cmb2' ),
+  		'object_types'  => array( 'post', ), // Post type
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Gallery', 'cmb2' ),
+  		'desc'       => __( '...', 'cmb2' ),
+  		'id'         => $prefix . 'gallery',
+  		'type'       => 'wysiwyg',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( '3d File', 'cmb2' ),
+  		'desc'       => __( '...', 'cmb2' ),
+  		'id'         => $prefix . 'file',
+  		'type'       => 'file',
+  	) );
+
 }
 ?>

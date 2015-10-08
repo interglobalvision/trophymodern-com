@@ -3,24 +3,25 @@
 // https://developer.wordpress.org/resource/dashicons/
 function add_menu_icons_styles(){
 ?>
- 
+
 <style>
 #menu-posts-project .dashicons-admin-post:before {
     content: '\f319';
 }
 </style>
- 
+
 <?php
 }
 add_action( 'admin_head', 'add_menu_icons_styles' );
 
 
 //Register Custom Post Types
+/*
 add_action( 'init', 'register_cpt_project' );
 
 function register_cpt_project() {
 
-    $labels = array( 
+    $labels = array(
         'name' => _x( 'Projects', 'project' ),
         'singular_name' => _x( 'Project', 'project' ),
         'add_new' => _x( 'Add New', 'project' ),
@@ -35,17 +36,17 @@ function register_cpt_project() {
         'menu_name' => _x( 'Projects', 'project' ),
     );
 
-    $args = array( 
+    $args = array(
         'labels' => $labels,
         'hierarchical' => false,
-        
+
         'supports' => array( 'title', 'editor', 'thumbnail' ),
-        
+
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 5,
-        
+
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
@@ -58,3 +59,4 @@ function register_cpt_project() {
 
     register_post_type( 'project', $args );
 }
+*/
