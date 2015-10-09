@@ -51,9 +51,20 @@
 <body <?php body_class(); ?>>
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
-  <section id="main-container">
+<nav class="nav" id="top-left">
+  globe
+</nav>
 
-  <!-- start content -->
-  <header id="header">
-    <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-  </header>
+<nav class="nav" id="top-right">
+  logo
+</nav>
+
+<nav class="nav" id="bottom-left">
+  mute/unmute
+</nav>
+
+<nav class="nav" id="bottom-right">
+  ?
+</nav>
+
+  <section id="main-container">
