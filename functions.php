@@ -89,6 +89,14 @@ function wpb_imagelink_setup() {
 }
 add_action('admin_init', 'wpb_imagelink_setup', 10);
 
+// Allow .obj and .mtl uploads
+function custom_upload_mimes($existing_mimes=array()) {
+  $existing_mimes['obj'] = 'text/plain';
+  $existing_mimes['mtl'] = 'text/plain';
+  return $existing_mimes;
+}
+add_filter('upload_mimes', 'custom_upload_mimes');
+
 // custom login logo
 /*
 function custom_login_logo() {

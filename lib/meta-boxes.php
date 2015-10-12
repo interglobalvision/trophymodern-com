@@ -53,9 +53,16 @@ function igv_cmb_metaboxes() {
   	) );
 
   	$post_metabox->add_field( array(
-  		'name'       => __( '3d File', 'cmb2' ),
-  		'desc'       => __( '...', 'cmb2' ),
-  		'id'         => $prefix . 'file',
+  		'name'       => __( '3D Object File', 'cmb2' ),
+  		'desc'       => __( '(.obj)', 'cmb2' ),
+  		'id'         => $prefix . 'obj_file',
+  		'type'       => 'file',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Material Library File', 'cmb2' ),
+  		'desc'       => __( '(.mtl)', 'cmb2' ),
+  		'id'         => $prefix . 'mtl_file',
   		'type'       => 'file',
   	) );
 
