@@ -10,3 +10,28 @@ $(document).ready(function () {
   'use strict';
   l('Hola Globie');
 });
+
+var TrophyModern = {
+  init: function() {
+    $(document).ready(function () {
+      var mySwiper = new Swiper ('.swiper-container', {
+        // Optional parameters
+        keyboardControl: true,
+        centeredSlides: true,
+        spaceBetween: 60,
+        slidesPerView: 'auto',
+        hashnav: true,
+
+        // Navigation arrows
+        nextButton: '.cycle-next',
+        prevButton: '.cycle-prev',
+
+      })
+      .on('onInit', function(swiper) {
+        debugger;
+      }); 
+    });
+  },
+};
+
+TrophyModern.init();
