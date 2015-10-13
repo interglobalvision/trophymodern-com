@@ -34,13 +34,17 @@ $margin-small = ($gutter)
 $margin-tiny = ($gutter / 2)
 $margin-basic = ($gutter * 2)
 $margin-large = ($gutter * 5)
+$margin-larger = ($gutter * 7)
 
-$font-size-basic = 15px
+$font-size-basic = 28px
 $font-leading-basic = 1.35em
 $font-tracking-basic = 0.001em
 
 $color-black-soft = rgb(14, 14, 14)
 $color-white-soft = rgb(253, 253, 253)
+
+$color-red = red
+$color-gray = gray
 
 // TYPOGRAPHY
 
@@ -82,6 +86,12 @@ img
   max-width: 100%
   height: auto
 
+.background-red
+  background-color: $color-red
+
+.background-gray
+  background-color: $color-gray
+
 
 // NAV
 
@@ -106,6 +116,15 @@ img
 #bottom-right
   bottom: 0
   right: 0
+
+// CONTENT LAYOUTS
+
+#page
+  color: $color-white-soft
+
+#page-copy
+  box-sizing: border-box
+  padding: $margin-larger
 
 
 
