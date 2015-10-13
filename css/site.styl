@@ -30,6 +30,8 @@ for pcol in 1..$pcols
 
 // VARIABLES
 
+$animation-speed-basic = 0.3s
+
 $margin-small = ($gutter)
 $margin-tiny = ($gutter / 2)
 $margin-basic = ($gutter * 2)
@@ -37,8 +39,12 @@ $margin-large = ($gutter * 5)
 $margin-larger = ($gutter * 7)
 
 $font-size-basic = 28px
+$font-size-small = ($font-size-basic * 0.61803398875)
+
 $font-leading-basic = 1.35em
-$font-tracking-basic = 0.001em
+
+$font-tracking-basic = 0.01em
+$font-tracking-wider = 0.025em
 
 $color-black-soft = rgb(14, 14, 14)
 $color-white-soft = rgb(253, 253, 253)
@@ -78,13 +84,17 @@ p
 .font-color-gray
   color: $color-gray
 
+.font-tracking-wider
+  letter-spacing: $font-tracking-wider
+
 // LINKS
 
 a, a:active, a:visited
-  color:inherit
-  transition:opacity .2s
+  color: inherit
+  text-decoration: underline
+  font-weight: bold
   &:hover
-    opacity:.5
+    text-decoration: none
 
 
 // BASIC
@@ -137,6 +147,9 @@ img
   box-sizing: border-box
   padding: $margin-larger
 
+#page-footer
+  font-size: $font-size-small
+  margin: $margin-basic 0
 
 // FORM
 
