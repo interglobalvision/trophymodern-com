@@ -66,5 +66,32 @@ function igv_cmb_metaboxes() {
   		'type'       => 'file',
   	) );
 
+    // pages
+
+	 	$page_metabox = new_cmb2_box( array(
+  		'id'            => $prefix . 'page_metabox',
+  		'title'         => __( 'Page Metabox', 'cmb2' ),
+  		'object_types'  => array( 'page', ), // Post type
+  	) );
+
+  	$page_metabox->add_field( array(
+  		'name'       => __( 'Background color', 'cmb2' ),
+  		'id'         => $prefix . 'color',
+      'type'             => 'select',
+          'show_option_none' => false,
+          'default'          => 'Red',
+          'options'          => array(
+              'red' => __( 'Red', 'cmb' ),
+              'gray'   => __( 'Gray', 'cmb' ),
+          ),
+  	) );
+
+  	$page_metabox->add_field( array(
+  		'name'       => __( 'Page footer', 'cmb2' ),
+  		'desc'       => __( 'optional centered text at bottom of page', 'cmb2' ),
+  		'id'         => $prefix . 'page_footer',
+  		'type'       => 'wysiwyg',
+  	) );
+
 }
 ?>

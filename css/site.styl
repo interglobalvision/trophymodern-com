@@ -29,19 +29,31 @@ for pcol in 1..$pcols
   .into-{pcol}
     width: ( 100% / pcol )
 
+
 // VARIABLES
+
+$animation-speed-basic = 0.3s
 
 $margin-small = ($gutter)
 $margin-tiny = ($gutter / 2)
 $margin-basic = ($gutter * 2)
 $margin-large = ($gutter * 5)
+$margin-larger = ($gutter * 7)
 
-$font-size-basic = 15px
+$font-size-basic = 28px
+$font-size-small = ($font-size-basic * 0.61803398875)
+
 $font-leading-basic = 1.35em
-$font-tracking-basic = 0.001em
+
+$font-tracking-basic = 0.01em
+$font-tracking-wider = 0.025em
 
 $color-black-soft = rgb(14, 14, 14)
 $color-white-soft = rgb(253, 253, 253)
+
+$color-red = red
+$color-gray = gray
+
 
 // TYPOGRAPHY
 
@@ -61,16 +73,33 @@ h3
   font-size: 1.5em
 
 p
-  margin-bottom: 1em
+  margin: 0 auto 1em auto
+  max-width: 1000px
+
+.font-color-white
+  color: $color-white-soft
+
+.font-color-black
+  color: $color-black-soft
+
+.font-color-red
+  color: $color-red
+
+.font-color-gray
+  color: $color-gray
+
+.font-tracking-wider
+  letter-spacing: $font-tracking-wider
 
 
 // LINKS
 
 a, a:active, a:visited
-  color:inherit
-  transition:opacity .2s
+  color: inherit
+  text-decoration: underline
+  font-weight: bold
   &:hover
-    opacity:.5
+    text-decoration: none
 
 
 // BASIC
@@ -83,8 +112,13 @@ html
 img
   max-width: 100%
   height: auto
+*/
 
-  */
+.background-red
+  background-color: $color-red
+
+.background-gray
+  background-color: $color-gray
 
 // NAV
 
@@ -110,6 +144,15 @@ img
   bottom: 0
   right: 0
 
+.conditional-nav
+  display: none
+
+.home .conditional-nav.nav-home
+  display: block
+
+.single .conditional-nav.nav-single
+  display: block
+
 // SLIDESHOWS
 // - single
 .single .gallery
@@ -132,7 +175,9 @@ img
     max-width: 100%
     max-height: 100%
 
+
 // SINGLE
+
 .single article
   display: flex
   justify-content: space-around
@@ -149,6 +194,48 @@ img
     position: absolute
     top: 0
     left: 0
+
+
+// CONTENT LAYOUTS
+
+#page
+  color: $color-white-soft
+
+#page-copy
+  box-sizing: border-box
+  padding: $margin-larger
+
+#page-footer
+  font-size: $font-size-small
+  margin: $margin-basic 0
+
+
+// FORM
+
+#form-inquiries
+  background-color: $color-white-soft
+  padding: $margin-small
+  max-width: 850px
+  margin: $margin-large auto
+
+input, textarea
+  box-sizing: border-box
+  padding: $margin-small
+  margin: $margin-tiny 0
+
+input
+  width: 49%
+
+textarea
+  display: block
+  width: 100%
+
+button
+  padding: $margin-tiny $margin-basic
+  margin-top: $margin-small
+  background-color: $color-gray
+  color: $color-white-soft
+  border-radius: $margin-tiny
 
 
 // MEDIA QUERIES
