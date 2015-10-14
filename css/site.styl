@@ -1,5 +1,6 @@
 @import "sanitize"
 @import "helpers"
+@import "lib/swiper"
 
 // GRID OF 12 90px COLUMNS WITH 16px GUTTER
 $cols = 12
@@ -27,6 +28,7 @@ $pcols = 10
 for pcol in 1..$pcols
   .into-{pcol}
     width: ( 100% / pcol )
+
 
 // VARIABLES
 
@@ -88,6 +90,7 @@ p
 .font-tracking-wider
   letter-spacing: $font-tracking-wider
 
+
 // LINKS
 
 a, a:active, a:visited
@@ -104,9 +107,11 @@ html
   background-color: $color-white-soft
   color: $color-black-soft
 
+/*
 img
   max-width: 100%
   height: auto
+*/
 
 .background-red
   background-color: $color-red
@@ -139,6 +144,58 @@ img
   bottom: 0
   right: 0
 
+.conditional-nav
+  display: none
+
+.home .conditional-nav.nav-home
+  display: block
+
+.single .conditional-nav.nav-single
+  display: block
+
+
+// SLIDESHOWS
+
+.single .gallery
+  height: 80vh
+
+.single .gallery nav
+  position: absolute
+  bottom: 0
+  right: 0
+
+.swiper-slide
+  text-align: center
+  width: auto
+  max-width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  img
+    max-width: 100%
+    max-height: 100%
+
+
+// SINGLE
+
+.single article
+  display: flex
+  justify-content: space-around
+  align-items: center
+  flex-direction: column
+  height: 100vh
+
+  & .gallery-nav
+    postition: absolute
+    right: 0
+    bottom: 0
+
+  & .nav.close
+    position: absolute
+    top: 0
+    left: 0
+
+
 // CONTENT LAYOUTS
 
 #page
@@ -151,6 +208,7 @@ img
 #page-footer
   font-size: $font-size-small
   margin: $margin-basic 0
+
 
 // FORM
 
@@ -178,7 +236,6 @@ button
   background-color: $color-gray
   color: $color-white-soft
   border-radius: $margin-tiny
-
 
 
 // MEDIA QUERIES

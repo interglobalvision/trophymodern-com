@@ -52,7 +52,8 @@
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
 <nav class="nav" id="top-left">
-  globe
+  <a class="u-pointer conditional-nav nav-home">globe</a>
+  <a class="u-pointer conditional-nav nav-single" href="<?php echo home_url(); ?>">close</a>
 </nav>
 
 <nav class="nav" id="top-right">

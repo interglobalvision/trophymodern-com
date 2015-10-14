@@ -82,9 +82,8 @@ function my_gallery_shortcode($attr) {
 
 	$selector = "gallery-{$instance}";
 
-	$gallery_div = "<div id='$selector' class='cycle-slideshow gallery galleryid-{$id}' data-cycle-fx='scrollHorz' data-cycle-timeout='0' data-cycle-swipe=true data-cycle-slides='div'>
-	<nav class='cycle-prev'></nav>
-    <nav class='cycle-next'></nav>
+	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} swiper-container'>
+  <div class='swiper-wrapper'>
     ";
 	$output = $gallery_div;
 
@@ -122,10 +121,21 @@ if ( $captiontag && trim($attachment->post_excerpt) ) {
 */
 
 
-		$output .= "<div><img src='{$img[0]}'>{$tag}</div>";
+    $output .= "
+      <div class='swiper-slide' data-hash='{$id}'>
+        <img src='{$img[0]}'>{$tag}
+      </div>
+";
 		}
 
-	$output .= "</div>\n";
+  $output .= "
+      </div>
+    </div>
+    <nav class='nav gallery-nav'>
+    <span class='cycle-prev'>PREV</span>
+    <span class='cycle-next'>NEXT</span>
+    </nav>
+    \n";
 
 	return $output;
 }
