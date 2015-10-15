@@ -17,6 +17,7 @@ var ThreeScene = {
     _this.renderer = new THREE.WebGLRenderer({antialias: true});
     _this.renderer.setSize(window.innerWidth, window.innerHeight);
     _this.renderer.setPixelRatio(window.devicePixelRatio);
+    _this.renderer.setClearColor(0xffffff);
 
     _this.controls = new THREE.OrbitControls(_this.camera, _this.renderer.domElement);
     _this.controls.enableDamping = true;
