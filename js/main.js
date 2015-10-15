@@ -15,8 +15,8 @@ var TrophyModern = {
         spaceBetween: 60,
         slidesPerView: 'auto',
         hashnav: true,
-        nextButton: '.cycle-next',
-        prevButton: '.cycle-prev',
+        nextButton: '.swiper-next',
+        prevButton: '.swiper-prev',
       })
       .on('onInit', function(swiper) {
 //         debugger;

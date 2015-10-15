@@ -65,7 +65,10 @@
 </nav>
 
 <nav class="nav" id="bottom-right">
-  ?
+  <nav class="conditional-nav nav-single">
+    <span class="swiper-prev">prev</span>/<span class="swiper-next">next</span>
+  </nav>
+  <a class="u-pointer conditional-nav nav-home">?</a>
 </nav>
 
   <section id="main-container">

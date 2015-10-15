@@ -64,12 +64,15 @@ body
 
 h1
   font-size: 3em
+  line-height: $font-leading-basic
 
 h2
   font-size: 2em
+  line-height: $font-leading-basic
 
 h3
   font-size: 1.5em
+  line-height: $font-leading-basic
 
 p
   margin: 0 auto 1em auto
@@ -178,23 +181,20 @@ img
 
 // SINGLE
 
-.single article
+#single article
   display: flex
   justify-content: space-around
   align-items: center
   flex-direction: column
   height: 100vh
 
-  .gallery-nav
-    postition: absolute
-    right: 0
-    bottom: 0
-
-  .nav.close
-    position: absolute
-    top: 0
-    left: 0
-
+#single-title
+  position: fixed
+  z-index: 888
+  top: 0
+  width: 100%
+  box-sizing: border-box
+  padding: $margin-basic
 
 // CONTENT LAYOUTS
 

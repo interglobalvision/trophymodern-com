@@ -131,10 +131,6 @@ if ( $captiontag && trim($attachment->post_excerpt) ) {
   $output .= "
       </div>
     </div>
-    <nav class='nav gallery-nav'>
-    <span class='cycle-prev'>PREV</span>
-    <span class='cycle-next'>NEXT</span>
-    </nav>
     \n";
 
 	return $output;

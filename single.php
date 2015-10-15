@@ -7,7 +7,7 @@ get_header();
 <main id="main-content">
 
   <!-- main posts loop -->
-  <section id="posts">
+  <section id="single">
 
 <?php
 if( have_posts() ) {
@@ -17,7 +17,7 @@ if( have_posts() ) {
 
     <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-      <h2><?php the_title(); ?></h2>
+      <h2 id="single-title" class="u-align-center"><?php the_title(); ?></h2>
 
       <?php the_content(); ?>
 
