@@ -53,7 +53,7 @@
 
 <nav class="nav" id="top-left">
   <a class="u-pointer conditional-nav nav-home">globe</a>
-  <a class="u-pointer conditional-nav nav-single" href="<?php echo home_url(); ?>">close</a>
+  <a class="u-pointer conditional-nav nav-single nav-page" href="<?php echo home_url(); ?>">close</a>
 </nav>
 
 <nav class="nav" id="top-right">
@@ -68,7 +68,7 @@
   <nav class="conditional-nav nav-single">
     <span class="swiper-prev">prev</span>/<span class="swiper-next">next</span>
   </nav>
-  <a class="u-pointer conditional-nav nav-home">?</a>
+  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">?</a>
 </nav>
 
   <section id="main-container">
