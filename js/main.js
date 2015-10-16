@@ -12,7 +12,7 @@ var ThreeScene = {
 
     _this.scene = new THREE.Scene();
 
-    _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 1000);
+    _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 8000);
 
     _this.renderer = new THREE.WebGLRenderer({antialias: true});
     _this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -69,33 +69,35 @@ var ThreeScene = {
   addSkybox: function() {
     var _this = this;
 
-    function makeSkybox(urls, size) {
-      var skyboxCubemap = THREE.ImageUtils.loadTextureCube( urls );
+    var dirPath = WP.themeUrl + '/img/three/skybox/';
+    var skybox = _this.makeSkybox([
+      dirPath + 'CloudyLightRaysRight2048.png', // right
+      dirPath + 'CloudyLightRaysLeft2048.png', // left
+      dirPath + 'CloudyLightRaysUp2048.png', // top
+      dirPath + 'CloudyLightRaysDown2048.png', // bottom
+      dirPath + 'CloudyLightRaysBack2048.png', // back
+      dirPath + 'CloudyLightRaysFront2048.png',  // front
+    ], 2048 );
 
-      skyboxCubemap.format = THREE.RGBFormat;
+    _this.scene.add(skybox);
+  },
 
-      var skyboxShader = THREE.ShaderLib['cube'];
+  makeSkybox: function(urls, size) {
+    var skyboxCubemap = THREE.ImageUtils.loadTextureCube( urls );
 
-      skyboxShader.uniforms['tCube'].value = skyboxCubemap;
+    skyboxCubemap.format = THREE.RGBFormat;
 
-      return new THREE.Mesh(
-        new THREE.BoxGeometry(size, size, size),
-        new THREE.ShaderMaterial({
-          fragmentShader : skyboxShader.fragmentShader, vertexShader : skyboxShader.vertexShader,
-          uniforms : skyboxShader.uniforms, depthWrite : false, side : THREE.BackSide,
-        })
-      );
-    }
+    var skyboxShader = THREE.ShaderLib['cube'];
 
-    _this.scene.add(makeSkybox([
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysRight2048.png', // right
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysLeft2048.png', // left
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysUp2048.png', // top
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysDown2048.png', // bottom
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysBack2048.png', // back
-      WP.themeUrl + '/img/three/skybox/CloudyLightRaysFront2048.png',  // front
-    ], 8000 ));
+    skyboxShader.uniforms['tCube'].value = skyboxCubemap;
 
+    return new THREE.Mesh(
+      new THREE.BoxGeometry(size, size, size),
+      new THREE.ShaderMaterial({
+        fragmentShader : skyboxShader.fragmentShader, vertexShader : skyboxShader.vertexShader,
+        uniforms : skyboxShader.uniforms, depthWrite : false, side : THREE.BackSide,
+      })
+    );
   },
 
   render: function() {
