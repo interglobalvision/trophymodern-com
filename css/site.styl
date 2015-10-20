@@ -1,5 +1,6 @@
 @import "sanitize"
 @import "helpers"
+@import "fonts"
 @import "lib/swiper"
 
 // GRID OF 12 90px COLUMNS WITH 16px GUTTER
@@ -57,7 +58,7 @@ $color-gray = gray
 // TYPOGRAPHY
 
 body
-  font-family: helvetica, arial, sans-serif
+  font-family: 'UniversLTStd', helvetica, arial, sans-serif
   font-size: $font-size-basic
   line-height: $font-leading-basic
   letter-spacing: $font-tracking-basic
@@ -65,18 +66,27 @@ body
 h1
   font-size: 3em
   line-height: $font-leading-basic
+  font-weight: 600
 
 h2
   font-size: 2em
   line-height: $font-leading-basic
+  font-weight: 600
 
 h3
   font-size: 1.5em
   line-height: $font-leading-basic
+  font-weight: 600
 
 p
   margin: 0 auto 1em auto
   max-width: 1000px
+  font-weight: 400
+  strong
+    font-weight: 500
+
+em
+  font-style: italic
 
 .font-color-white
   color: $color-white-soft
@@ -99,7 +109,7 @@ p
 a, a:active, a:visited
   color: inherit
   text-decoration: underline
-  font-weight: bold
+  font-weight: 500
   &:hover
     text-decoration: none
 
