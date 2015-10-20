@@ -108,10 +108,15 @@ em
 
 a, a:active, a:visited
   color: inherit
-  text-decoration: underline
-  font-weight: 500
-  &:hover
-    text-decoration: none
+  text-decoration: none
+
+p
+  a, a:active, a:visited
+    color: inherit
+    text-decoration: underline
+    font-weight: 500
+    &:hover
+      text-decoration: none
 
 
 // BASIC
@@ -242,7 +247,7 @@ input, textarea
   margin: $margin-tiny 0
 
 input
-  width: 49%
+  width: 49% 
 
 textarea
   display: block
