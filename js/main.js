@@ -71,12 +71,12 @@ var ThreeScene = {
 
     var dirPath = WP.themeUrl + '/img/three/skybox/';
     var skybox = _this.makeSkybox([
-      dirPath + 'CloudyLightRaysRight2048.png', // right
-      dirPath + 'CloudyLightRaysLeft2048.png', // left
-      dirPath + 'CloudyLightRaysUp2048.png', // top
-      dirPath + 'CloudyLightRaysDown2048.png', // bottom
-      dirPath + 'CloudyLightRaysBack2048.png', // back
-      dirPath + 'CloudyLightRaysFront2048.png',  // front
+      dirPath + 'back.jpg', // 
+      dirPath + 'front.jpg', // 
+      dirPath + 'top.jpg', // top
+      dirPath + 'bottom.jpg', // bottom
+      dirPath + 'right.jpg', // 
+      dirPath + 'left.jpg',  // 
     ], 2048 );
 
     _this.scene.add(skybox);
