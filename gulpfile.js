@@ -80,4 +80,5 @@ gulp.task('watch', function() {
   gulp.watch(['img/src/**'], ['images']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('build', ['style','javascript-library','javascript','images']);
+gulp.task('default', ['build','watch']);
