@@ -1,5 +1,5 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
-/* global $, document, Modernizr, THREE, WP */
+/* global $, document, Modernizr, THREE, WP, Models */
 
 function l(data) {
   'use strict';
@@ -15,7 +15,9 @@ var ThreeScene = {
 
     _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 8000);
 
-    _this.renderer = new THREE.WebGLRenderer({antialias: true});
+    _this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+    });
     _this.renderer.setSize(window.innerWidth, window.innerHeight);
     _this.renderer.setPixelRatio(window.devicePixelRatio);
     _this.renderer.setClearColor(0xffffff);
@@ -71,6 +73,7 @@ var ThreeScene = {
   addModels: function() {
     var _this = this;
 
+    // Models is declared inside the loop on index.php. It contains an array of objects.
     for(var i = 0; i < Models.length; i++) {
       _this.addModel( Models[i] );
     }
@@ -82,9 +85,11 @@ var ThreeScene = {
     THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
     var loader = new THREE.OBJMTLLoader();
+
     loader.load( model.obj, model.mtl, function ( object ) {
 
-      object.position.y = - 80;
+      // Hot to calculate/randomize positions ??
+      object.position.y = -100;
       _this.scene.add( object );
 
     }, _this.onProgress, _this.onError );
@@ -95,6 +100,7 @@ var ThreeScene = {
     
     if ( xhr.lengthComputable ) {
       var percentComplete = xhr.loaded / xhr.total * 100;
+
       console.log( Math.round(percentComplete, 2) + '% downloaded' );
     }
   },
@@ -102,20 +108,20 @@ var ThreeScene = {
   onError: function(xhr) {
     var _this = this;
 
+    console.log('some error');
   },
-
 
   addSkybox: function() {
     var _this = this;
 
     var dirPath = WP.themeUrl + '/img/three/skybox/';
     var skybox = _this.makeSkybox([
-      dirPath + 'back.jpg', // 
-      dirPath + 'front.jpg', // 
-      dirPath + 'top.jpg', // top
-      dirPath + 'bottom.jpg', // bottom
-      dirPath + 'right.jpg', // 
-      dirPath + 'left.jpg',  // 
+      dirPath + 'back.jpg',
+      dirPath + 'front.jpg',
+      dirPath + 'top.jpg',
+      dirPath + 'bottom.jpg',
+      dirPath + 'right.jpg',
+      dirPath + 'left.jpg',
     ], 2048 );
 
     _this.scene.add(skybox);
