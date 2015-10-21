@@ -7,6 +7,7 @@ function l(data) {
 }
 
 var ThreeScene = {
+  models: [],
   init: function() {
     var _this = this;
 
@@ -38,6 +39,7 @@ var ThreeScene = {
 
     _this.testContent();
     _this.addSkybox();
+    _this.addModels();
 
     _this.render();
     window.addEventListener('resize', _this.resize.bind(_this), false);
@@ -65,6 +67,43 @@ var ThreeScene = {
     _this.scene.add(_this.cube);
 
   },
+
+  addModels: function() {
+    var _this = this;
+
+    for(var i = 0; i < Models.length; i++) {
+      _this.addModel( Models[i] );
+    }
+  },
+
+  addModel: function(model) {
+    var _this = this;
+
+    THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+    var loader = new THREE.OBJMTLLoader();
+    loader.load( model.obj, model.mtl, function ( object ) {
+
+      object.position.y = - 80;
+      _this.scene.add( object );
+
+    }, _this.onProgress, _this.onError );
+  },
+
+  onProgress: function(xhr) {
+    var _this = this;
+    
+    if ( xhr.lengthComputable ) {
+      var percentComplete = xhr.loaded / xhr.total * 100;
+      console.log( Math.round(percentComplete, 2) + '% downloaded' );
+    }
+  },
+
+  onError: function(xhr) {
+    var _this = this;
+
+  },
+
 
   addSkybox: function() {
     var _this = this;
