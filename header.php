@@ -52,21 +52,49 @@
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
 <nav class="nav" id="top-left">
-  <a class="u-pointer conditional-nav nav-home">globe</a>
-  <a class="u-pointer conditional-nav nav-single nav-page" href="<?php echo home_url(); ?>">close</a>
+  <a class="u-pointer conditional-nav nav-home">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/globe.svg');
+    ?>
+  </a>
+  <a class="u-pointer conditional-nav nav-single nav-page" href="<?php echo home_url(); ?>">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/close.svg');
+    ?>
+  </a>
 </nav>
 
 <nav class="nav" id="top-right">
-  logo
+  <?php
+    echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/tm-logo.svg');
+  ?>
 </nav>
 
 <nav class="nav" id="bottom-left">
-  mute/unmute
+  <a class="u-pointer nav-mute-toggle" id="nav-mute">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/mute.svg');
+    ?>
+  </a>
+  <a class="u-pointer nav-mute-toggle" id="nav-unmute">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/unmute.svg');
+    ?>
+  </a>
 </nav>
 
 <nav class="nav" id="bottom-right">
   <nav class="conditional-nav nav-single">
-    <span class="swiper-prev">prev</span>/<span class="swiper-next">next</span>
+    <span class="swiper-prev">
+      <?php
+        echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-left.svg');
+      ?>
+    </span>
+    <span class="swiper-next">
+      <?php
+        echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-right.svg');
+      ?>
+    </span>
   </nav>
   <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">?</a>
 </nav>
