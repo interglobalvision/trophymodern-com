@@ -66,7 +66,7 @@
 
 <nav class="nav" id="top-right">
   <?php
-    echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/tm-logo.svg');
+    echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
   ?>
 </nav>
 
