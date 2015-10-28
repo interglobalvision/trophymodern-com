@@ -96,7 +96,11 @@
       ?>
     </span>
   </nav>
-  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">?</a>
+  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/query.svg');
+    ?>
+  </a>
 </nav>
 
   <section id="main-container">
