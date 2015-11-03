@@ -24,8 +24,8 @@ for col in 1..$cols
 // FLUID COLS
 .percent-col
   float: left
-  box-sizing: content-box
-$pcols = 10
+  box-sizing: border-box
+$pcols = 2
 for pcol in 1..$pcols
   .into-{pcol}
     width: ( 100% / pcol )
@@ -125,12 +125,6 @@ html
   background-color: $color-white-soft
   color: $color-black-soft
 
-/*
-img
-  max-width: 100%
-  height: auto
-*/
-
 .background-red
   background-color: $color-red
 
@@ -156,7 +150,7 @@ img
 #logo
   width: auto
   height: 40px
-  
+
 #top-left
   top: 0
   left: 0
@@ -182,7 +176,7 @@ img
 .single .conditional-nav.nav-single
   display: block
 
-.page .conditional-nav.nav-page
+.page .conditional-nav.nav-page, .post-type-archive-exhibition .conditional-nav.nav-page
   display: block
 
 #nav-mute
@@ -229,6 +223,25 @@ img
   padding: $margin-basic
 
 
+// EXHIBITIONS
+
+#exhibitions
+  background-color: $color-gray
+  img
+    max-width: 100%
+    height: auto
+
+.pcol-padding-right
+  padding-right: $margin-basic
+
+.exhibition
+  box-sizing: border-box
+  padding: $margin-larger
+
+.exhibition-header
+  margin-bottom: 1em
+
+
 // CONTENT LAYOUTS
 
 #page
@@ -237,6 +250,9 @@ img
 #page-copy
   box-sizing: border-box
   padding: $margin-larger
+  img
+    max-width: 100%
+    height: auto
 
 #page-footer
   font-size: $font-size-small
@@ -273,12 +289,35 @@ button
 
 // MEDIA QUERIES
 
-@media screen and (max-width: ($col * $cols)+($gutter * $cols))
-  html
-    width: 100%
+@media screen and (max-width: 1122px)
 
+  $font-size-basic = 22px
+  $font-size-small = ($font-size-basic * 0.61803398875)
+  $font-leading-basic = 1.35em
+
+  body
+    font-family: 'UniversLTStd', helvetica, arial, sans-serif
+    font-size: $font-size-basic
+    line-height: $font-leading-basic
+
+@media screen and (max-width: 800px)
+
+  $font-size-basic = 19px
+  $font-size-small = ($font-size-basic * 0.61803398875)
+  $font-leading-basic = 1.35em
+
+  body
+    font-family: 'UniversLTStd', helvetica, arial, sans-serif
+    font-size: $font-size-basic
+    line-height: $font-leading-basic
 
 @media screen and (max-width: 600px)
+
+  .percent-col
+    float: none
+    width: 100%
+    padding-right: 0px
+    padding-bottom: $margin-small
 
   // NAV
 

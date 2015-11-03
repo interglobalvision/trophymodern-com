@@ -1164,37 +1164,13 @@ button.swiper-pagination-bullet {
 }
 .percent-col {
   float: left;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .into-1 {
   width: 100%;
 }
 .into-2 {
   width: 50%;
-}
-.into-3 {
-  width: 33.333333333333336%;
-}
-.into-4 {
-  width: 25%;
-}
-.into-5 {
-  width: 20%;
-}
-.into-6 {
-  width: 16.666666666666668%;
-}
-.into-7 {
-  width: 14.285714285714286%;
-}
-.into-8 {
-  width: 12.5%;
-}
-.into-9 {
-  width: 11.11111111111111%;
-}
-.into-10 {
-  width: 10%;
 }
 body {
   font-family: 'UniversLTStd', helvetica, arial, sans-serif;
@@ -1265,11 +1241,6 @@ html {
   background-color: #fdfdfd;
   color: #0e0e0e;
 }
-/*
-img
-  max-width: 100%
-  height: auto
-*/
 .background-red {
   background-color: #f00;
 }
@@ -1319,7 +1290,8 @@ canvas {
 .single .conditional-nav.nav-single {
   display: block;
 }
-.page .conditional-nav.nav-page {
+.page .conditional-nav.nav-page,
+.post-type-archive-exhibition .conditional-nav.nav-page {
   display: block;
 }
 #nav-mute {
@@ -1381,12 +1353,33 @@ canvas {
   box-sizing: border-box;
   padding: 32px;
 }
+#exhibitions {
+  background-color: #808080;
+}
+#exhibitions img {
+  max-width: 100%;
+  height: auto;
+}
+.pcol-padding-right {
+  padding-right: 32px;
+}
+.exhibition {
+  box-sizing: border-box;
+  padding: 112px;
+}
+.exhibition-header {
+  margin-bottom: 1em;
+}
 #page {
   color: #fdfdfd;
 }
 #page-copy {
   box-sizing: border-box;
   padding: 112px;
+}
+#page-copy img {
+  max-width: 100%;
+  height: auto;
 }
 #page-footer {
   font-size: 17.304951685000002px;
@@ -1418,12 +1411,27 @@ button {
   color: #fdfdfd;
   border-radius: 8px;
 }
-@media screen and (max-width: 1272px) {
-  html {
-    width: 100%;
+@media screen and (max-width: 1122px) {
+  body {
+    font-family: 'UniversLTStd', helvetica, arial, sans-serif;
+    font-size: 22px;
+    line-height: 1.35em;
+  }
+}
+@media screen and (max-width: 800px) {
+  body {
+    font-family: 'UniversLTStd', helvetica, arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.35em;
   }
 }
 @media screen and (max-width: 600px) {
+  .percent-col {
+    float: none;
+    width: 100%;
+    padding-right: 0px;
+    padding-bottom: 16px;
+  }
   .nav svg {
     width: 35px;
     height: 35px;
