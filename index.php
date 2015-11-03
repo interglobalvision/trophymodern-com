@@ -22,10 +22,10 @@ if( have_posts() ) {
     Models.push({
       obj: "' . $meta["_igv_obj_file"][0] . '",
       mtl: "' . $meta["_igv_mtl_file"][0] . '",
-    });
-  </script>';
+    });';
     }
   }
+  echo '</script>';
 }
 ?>
 <!-- end main-content -->
