@@ -97,11 +97,15 @@ var ThreeScene = {
 
   onProgress: function(xhr) {
     var _this = this;
-    
+
     if ( xhr.lengthComputable ) {
       var percentComplete = xhr.loaded / xhr.total * 100;
 
-      console.log( Math.round(percentComplete, 2) + '% downloaded' );
+      if (percentComplete === 100) {
+        console.log('Model loaded');
+      } else {
+        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+      }
     }
   },
 
