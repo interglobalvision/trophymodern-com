@@ -17,6 +17,15 @@ return $post_options;
 
 
 /**
+ * Add text_number input type
+ */
+// render numbers
+add_action( 'cmb2_render_text_number', 'sm_cmb_render_text_number', 10, 5 );
+function sm_cmb_render_text_number( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+  echo $field_type_object->input( array( 'class' => 'cmb2-text-small', 'type' => 'number' ) );
+}
+
+/**
  * Include and setup custom metaboxes and fields.
  *
  * @category YourThemeOrPlugin
@@ -32,7 +41,7 @@ add_action( 'cmb2_init', 'igv_cmb_metaboxes' );
 function igv_cmb_metaboxes() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_igv_';
+	$prefix = '_model_';
 
 	/**
 	 * Metaboxes declarations here
@@ -64,6 +73,24 @@ function igv_cmb_metaboxes() {
   		'desc'       => __( '(.mtl)', 'cmb2' ),
   		'id'         => $prefix . 'mtl_file',
   		'type'       => 'file',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Position X', 'cmb2' ),
+  		'id'         => $prefix . 'pos_x',
+  		'type'       => 'text_number',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Position Y', 'cmb2' ),
+  		'id'         => $prefix . 'pos_y',
+  		'type'       => 'text_number',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Position Z', 'cmb2' ),
+  		'id'         => $prefix . 'pos_z',
+  		'type'       => 'text_number',
   	) );
 
     // pages
