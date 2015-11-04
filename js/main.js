@@ -235,6 +235,8 @@ TrophyModern.Speech = {
   muteToggle: function() {
     var _this = this;
 
+    $('.nav-mute-toggle').toggle();
+
     if (_this.mute) {
       _this.resume();
       _this.mute = false;
