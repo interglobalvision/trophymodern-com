@@ -77,6 +77,7 @@ function igv_cmb_metaboxes() {
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Position X', 'cmb2' ),
+  		'desc'       => 'Suggested values in range of -/+ 200',
   		'id'         => $prefix . 'pos_x',
   		'type'       => 'text_number',
   		'default'    => '0',
@@ -84,6 +85,7 @@ function igv_cmb_metaboxes() {
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Position Y', 'cmb2' ),
+  		'desc'       => 'Suggested values in range of -/+ 200',
   		'id'         => $prefix . 'pos_y',
   		'type'       => 'text_number',
   		'default'    => '0',
@@ -91,6 +93,7 @@ function igv_cmb_metaboxes() {
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Position Z', 'cmb2' ),
+  		'desc'       => 'Suggested values in range of -/+ 200',
   		'id'         => $prefix . 'pos_z',
   		'type'       => 'text_number',
   		'default'    => '0',
