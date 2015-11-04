@@ -41,7 +41,6 @@ var ThreeScene = {
 
     _this.testContent();
     _this.addSkybox();
-    _this.addModels();
 
     _this.render();
     window.addEventListener('resize', _this.resize.bind(_this), false);
@@ -204,11 +203,94 @@ var Layout = {
   },
 };
 
+TrophyModern.Speech = {
+  mute: false,
+  speakContent: undefined,
+  init: function() {
+    var _this = this;
+    var speakOnLoad = $('.speak-on-load').first();
+
+    speechSynthesis.cancel();
+
+    if (!_this.mute && speakOnLoad.length) {
+      _this.speakContent = new SpeechSynthesisUtterance();
+      _this.speakContent.text = speakOnLoad.text();
+      _this.speakContent.lang = 'en-US';
+      _this.speakContent.rate = 1;
+      _this.speakContent.onend = function() {
+        _this.speakContent = undefined;
+        speechSynthesis.cancel();
+      };
+      _this.speak();
+    }
+
+    $('.nav-mute-toggle').on({
+      click: function() {
+        _this.muteToggle();
+      },
+    });
+
+  },
+
+  muteToggle: function() {
+    var _this = this;
+
+    if (_this.mute) {
+      _this.resume();
+      _this.mute = false;
+    } else {
+      _this.pause();
+      _this.mute = true;
+    }
+  },
+
+  loadElement: function(selector) {
+    var _this = this;
+
+    speechSynthesis.cancel();
+
+    _this.speakContent = new SpeechSynthesisUtterance();
+    _this.speakContent.text = $(selector).text();
+    _this.speakContent.lang = 'en-US';
+    _this.speakContent.rate = 1;
+    _this.speakContent.onend = function() {
+      _this.speakContent = undefined;
+      speechSynthesis.cancel();
+    };
+
+    if (!_this.mute) {
+      _this.speak();
+    }
+
+  },
+
+  speak: function() {
+    speechSynthesis.speak(this.speakContent);
+  },
+
+  pause: function() {
+    speechSynthesis.pause(this.speakContent);
+
+  },
+
+  resume: function() {
+    speechSynthesis.resume(this.speakContent);
+
+  },
+
+}
+
 $(document).ready(function () {
   'use strict';
 
   Layout.init();
 
+  TrophyModern.Speech.init();
+
   ThreeScene.init();
+
+  if (typeof Models !== 'undefined') {
+    ThreeScene.addModels();
+  }
 
 });
