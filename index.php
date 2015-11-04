@@ -20,11 +20,11 @@ if( have_posts() ) {
     if( $meta["_igv_obj_file"] && $meta["_igv_mtl_file"] ) {
       echo '
     Models.push({
-      obj: "' . $meta["_model_obj_file"][0] . '",
-      mtl: "' . $meta["_model_mtl_file"][0] . '",
-      x: "' . $meta["_model_pos_x"][0] . '",
-      y: "' . $meta["_model_pos_y"][0] . '",
-      z: "' . $meta["_model_pos_z"][0] . '",
+      obj: "' . $meta["_igv_obj_file"][0] . '",
+      mtl: "' . $meta["_igv_mtl_file"][0] . '",
+      x: "' . $meta["_igv_pos_x"][0] . '",
+      y: "' . $meta["_igv_pos_y"][0] . '",
+      z: "' . $meta["_igv_pos_z"][0] . '",
     });';
     }
   }

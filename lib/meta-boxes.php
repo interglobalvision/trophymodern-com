@@ -41,7 +41,7 @@ add_action( 'cmb2_init', 'igv_cmb_metaboxes' );
 function igv_cmb_metaboxes() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_model_';
+	$prefix = '_igv_';
 
 	/**
 	 * Metaboxes declarations here
@@ -79,18 +79,21 @@ function igv_cmb_metaboxes() {
   		'name'       => __( 'Position X', 'cmb2' ),
   		'id'         => $prefix . 'pos_x',
   		'type'       => 'text_number',
+  		'default'    => '0',
   	) );
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Position Y', 'cmb2' ),
   		'id'         => $prefix . 'pos_y',
   		'type'       => 'text_number',
+  		'default'    => '0',
   	) );
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Position Z', 'cmb2' ),
   		'id'         => $prefix . 'pos_z',
   		'type'       => 'text_number',
+  		'default'    => '0',
   	) );
 
     // pages
