@@ -1,10 +1,5 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
-/* global $, document, Modernizr, THREE, WP, Models */
-
-function l(data) {
-  'use strict';
-  console.log(data);
-}
+/* global $, document, THREE, WP, Models, Swiper, speechSynthesis, SpeechSynthesisUtterance */
 
 var ThreeScene = {
   models: [],
@@ -112,6 +107,7 @@ var ThreeScene = {
     var _this = this;
 
     console.log('some error');
+    console.log('xhr:', xhr);
   },
 
   addSkybox: function() {
@@ -221,6 +217,7 @@ TrophyModern.Speech = {
         _this.speakContent = undefined;
         speechSynthesis.cancel();
       };
+
       _this.speak();
     }
 
@@ -280,7 +277,7 @@ TrophyModern.Speech = {
 
   },
 
-}
+};
 
 $(document).ready(function () {
   'use strict';
