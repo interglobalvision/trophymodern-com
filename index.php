@@ -32,8 +32,6 @@ if( have_posts() ) {
 
 </main>
 
-<?php get_template_part('partials/three-scene'); ?>
-
 <?php
 get_footer();
 ?>

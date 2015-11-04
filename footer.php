@@ -1,5 +1,4 @@
-    <footer id="footer">
-    </footer>
+    <?php get_template_part('partials/three-scene'); ?>
 
   </section>
 
