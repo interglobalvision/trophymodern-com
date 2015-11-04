@@ -23,7 +23,9 @@ if( have_posts() ) {
 
     <article <?php post_class(); ?> id="page-copy">
 
-      <?php the_content(); ?>
+      <div class="speak-on-load">
+        <?php the_content(); ?>
+      </div>
 
       <form id="form-inquiries" class="font-color-black">
 
