@@ -104,11 +104,10 @@ class IGV_Admin {
 		// Set our CMB2 fields
 
 		$cmb->add_field( array(
-			'name' => __( 'Test Text', 'IGV' ),
-			'desc' => __( 'field description (optional)', 'IGV' ),
-			'id'   => $this->prefix . 'test_text',
-			'type' => 'text',
-			'default' => 'Default Text',
+			'name' => __( 'Home Audio Text', 'IGV' ),
+			'desc' => __( 'Spoken on load of homepage', 'IGV' ),
+			'id'   => $this->prefix . 'home_speak_on_load',
+			'type' => 'wysiwyg',
 		) );
 
 		$cmb->add_field( array(

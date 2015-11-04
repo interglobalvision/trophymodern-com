@@ -30,6 +30,13 @@ if( have_posts() ) {
 ?>
 <!-- end main-content -->
 
+<?php
+  $audioText = IGV_get_option('_igv_home_speak_on_load');
+  if (!empty($audioText)) {
+    echo '<div class="speak-on-load u-hidden">' . $audioText . '</div>';
+  }
+?>
+
 </main>
 
 <?php
