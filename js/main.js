@@ -34,7 +34,6 @@ var ThreeScene = {
 
     _this.camera.position.z = 5;
 
-    _this.testContent();
     _this.addSkybox();
 
     _this.render();
@@ -83,7 +82,11 @@ var ThreeScene = {
     loader.load( model.obj, model.mtl, function ( object ) {
 
       // Hot to calculate/randomize positions ??
-      object.position.y = -100;
+      object.position.x = model.x;
+      object.position.y = model.y;
+      object.position.z = model.z;
+
+      //_this.models.push( object );
       _this.scene.add( object );
 
     }, _this.onProgress, _this.onError );
@@ -149,11 +152,14 @@ var ThreeScene = {
 
     requestAnimationFrame(_this.render.bind(_this));
 
+/*
     _this.cube.rotation.x += 0.001;
     _this.cube.rotation.y += 0.0011;
+*/
 
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
+
   },
 };
 
