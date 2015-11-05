@@ -6,9 +6,18 @@ var ThreeScene = {
   init: function() {
     var _this = this;
 
-    _this.scene = new THREE.Scene();
+    _this.$container = $('#three-scene');
 
+    _this.scene = new THREE.Scene();
     _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 8000);
+    _this.raycaster = new THREE.Raycaster();
+    _this. directionVector = new THREE.Vector3();
+
+    _this.mousePosition = {
+      x: 0,
+      y: 0,
+      clicked: false,
+    };
 
     _this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -22,7 +31,7 @@ var ThreeScene = {
     _this.controls.dampingFactor = 0.95;
     _this.controls.enableZoom = false;
 
-    document.getElementById('three-scene').appendChild(_this.renderer.domElement);
+    _this.$container.append(_this.renderer.domElement);
 
     var ambient = new THREE.AmbientLight(0x444444);
     var directionalLight = new THREE.DirectionalLight(0xffeedd);
@@ -37,6 +46,13 @@ var ThreeScene = {
     _this.addSkybox();
 
     _this.render();
+    
+    _this.$container.click( function(event) {
+      _this.mousePosition.x = event.clientX;
+      _this.mousePosition.y = event.clientY;
+      _this.mousePosition.clicked = true;
+    });
+
     window.addEventListener('resize', _this.resize.bind(_this), false);
 
   },
@@ -156,6 +172,29 @@ var ThreeScene = {
     _this.cube.rotation.x += 0.001;
     _this.cube.rotation.y += 0.0011;
 */
+
+    if (_this.mousePosition.clicked) {
+      _this.mousePosition.clicked = false;
+
+      var x = ( _this.mousePosition.x / window.innerWidth ) * 2 - 1;
+      var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1
+
+      _this.directionVector.set(x, y, 1);
+
+      _this.directionVector.unproject( _this.camera );
+
+      _this.directionVector.sub(_this.camera.position);
+      _this.directionVector.normalize();
+
+      _this.raycaster.set(_this.camera.position, _this.directionVector)
+
+      var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
+
+      if( intersects.length ) {
+        var target = intersects[0].object;
+        console.log(target.id);
+      }
+    }
 
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
