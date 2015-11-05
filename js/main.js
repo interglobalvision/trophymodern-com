@@ -39,7 +39,6 @@ var ThreeScene = {
 
     _this.camera.position.z = 5;
 
-    _this.testContent();
     _this.addSkybox();
     _this.addModels();
 
