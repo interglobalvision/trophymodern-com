@@ -33,9 +33,14 @@ if( have_posts() ) {
 ?>
 <!-- end main-content -->
 
-</main>
+<?php
+  $audioText = IGV_get_option('_igv_home_speak_on_load');
+  if (!empty($audioText)) {
+    echo '<div class="speak-on-load u-hidden">' . $audioText . '</div>';
+  }
+?>
 
-<?php get_template_part('partials/three-scene'); ?>
+</main>
 
 <?php
 get_footer();

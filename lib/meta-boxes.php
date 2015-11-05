@@ -62,6 +62,13 @@ function igv_cmb_metaboxes() {
   	) );
 
   	$post_metabox->add_field( array(
+  		'name'       => __( 'Audio Text', 'cmb2' ),
+  		'desc'       => __( 'Text to speak on load', 'cmb2' ),
+  		'id'         => $prefix . 'speak_on_load',
+  		'type'       => 'wysiwyg',
+  	) );
+
+  	$post_metabox->add_field( array(
   		'name'       => __( '3D Object File', 'cmb2' ),
   		'desc'       => __( '(.obj)', 'cmb2' ),
   		'id'         => $prefix . 'obj_file',
