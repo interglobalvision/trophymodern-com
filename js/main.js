@@ -157,8 +157,10 @@ var ThreeScene = {
 
     requestAnimationFrame(_this.render.bind(_this));
 
+/*
     _this.cube.rotation.x += 0.001;
     _this.cube.rotation.y += 0.0011;
+*/
 
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
