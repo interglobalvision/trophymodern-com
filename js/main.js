@@ -223,7 +223,7 @@ TrophyModern.Email = {
         data: _this.emailForm.serialize(),
         success: function(data) {
           if (data.code === 1) {
-            _this.onSucess();
+            _this.onSuccess();
           } else {
             _this.onEmailError(data.code);
           }
@@ -244,7 +244,7 @@ TrophyModern.Email = {
     $('#form-inquiries-submit').attr('disabled', true).html('Sending...');
   },
 
-  onSucess: function() {
+  onSuccess: function() {
     _this = this;
 
     $('#form-inquiries-inputs').hide();
