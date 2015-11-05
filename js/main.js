@@ -245,6 +245,7 @@ var TrophyModern = {
       });
     });
   },
+
 };
 
 TrophyModern.init();
@@ -271,6 +272,63 @@ var Layout = {
   logic: function() {
     $('#page-copy').css('min-height', this.windowHeight + 'px');
   },
+};
+
+TrophyModern.Email = {
+  emailForm: $('#form-inquiries'),
+  init: function() {
+    _this = this;
+
+    var url = _this.emailForm.attr('action');
+
+    _this.emailForm.submit(function(e) {
+      e.preventDefault();
+      _this.onSubmit();
+
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: _this.emailForm.serialize(),
+        success: function(data) {
+          if (data.code === 1) {
+            _this.onSuccess();
+          } else {
+            _this.onEmailError(data.code);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          _this.onAjaxError(jqXHR, textStatus, errorThrown)
+        },
+      });
+
+    });
+
+  },
+
+  onSubmit: function() {
+    _this = this;
+
+    _this.emailForm.css('background-color', 'gray');
+    $('#form-inquiries-submit').attr('disabled', true).html('Sending...');
+  },
+
+  onSuccess: function() {
+    _this = this;
+
+    $('#form-inquiries-inputs').hide();
+    $('#form-inquiries-output').show();
+  },
+
+  onEmailError: function(code) {
+    console.log(code);
+  },
+
+  onAjaxError: function(jqXHR, textStatus, errorThrown) {
+    console.log(textStatus);
+    console.log(errorThrown);
+    console.log(jqXHR);
+  }
+
 };
 
 TrophyModern.Speech = {
@@ -355,6 +413,8 @@ TrophyModern.Speech = {
 
 $(document).ready(function () {
   'use strict';
+
+  TrophyModern.Email.init();
 
   Layout.init();
 
