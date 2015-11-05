@@ -20,6 +20,7 @@ if( have_posts() ) {
     if( $meta["_igv_obj_file"] && $meta["_igv_mtl_file"] ) {
       echo '
     Models.push({
+      url: "' . get_permalink($post->ID) . '",
       obj: "' . $meta["_igv_obj_file"][0] . '",
       mtl: "' . $meta["_igv_mtl_file"][0] . '",
       x: "' . $meta["_igv_pos_x"][0] . '",

@@ -6,9 +6,18 @@ var ThreeScene = {
   init: function() {
     var _this = this;
 
-    _this.scene = new THREE.Scene();
+    _this.$container = $('#three-scene');
 
+    _this.scene = new THREE.Scene();
     _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 8000);
+    _this.raycaster = new THREE.Raycaster();
+    _this. directionVector = new THREE.Vector3();
+
+    _this.mousePosition = {
+      x: 0,
+      y: 0,
+      clicked: false,
+    };
 
     _this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -22,7 +31,7 @@ var ThreeScene = {
     _this.controls.dampingFactor = 0.95;
     _this.controls.enableZoom = false;
 
-    document.getElementById('three-scene').appendChild(_this.renderer.domElement);
+    _this.$container.append(_this.renderer.domElement);
 
     var ambient = new THREE.AmbientLight(0x444444);
     var directionalLight = new THREE.DirectionalLight(0xffeedd);
@@ -37,6 +46,13 @@ var ThreeScene = {
     _this.addSkybox();
 
     _this.render();
+    
+    _this.$container.click( function(event) {
+      _this.mousePosition.x = event.clientX;
+      _this.mousePosition.y = event.clientY;
+      _this.mousePosition.clicked = true;
+    });
+
     window.addEventListener('resize', _this.resize.bind(_this), false);
 
   },
@@ -81,7 +97,10 @@ var ThreeScene = {
 
     loader.load( model.obj, model.mtl, function ( object ) {
 
-      // Hot to calculate/randomize positions ??
+      // Set the object post url
+      object.url = model.url;
+
+      // Set object position
       object.position.x = model.x;
       object.position.y = model.y;
       object.position.z = model.z;
@@ -126,6 +145,8 @@ var ThreeScene = {
       dirPath + 'left.jpg',
     ], 2048 );
 
+    skybox.name = 'skybox';
+
     _this.scene.add(skybox);
   },
 
@@ -156,6 +177,53 @@ var ThreeScene = {
     _this.cube.rotation.x += 0.001;
     _this.cube.rotation.y += 0.0011;
 */
+
+    if (_this.mousePosition.clicked) {
+      _this.mousePosition.clicked = false;
+
+      // The following will translate the mouse coordinates into a number
+      //     // ranging from -1 to 1, where
+      //         //      x == -1 && y == -1 means top-left, and
+      //             //      x ==  1 && y ==  1 means bottom right
+      var x = ( _this.mousePosition.x / window.innerWidth ) * 2 - 1;
+      var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1;
+
+      // Set our direction vector to those initial values
+      _this.directionVector.set(x, y, 1);
+
+      // Unpropject the vector
+      _this.directionVector.unproject( _this.camera );
+
+      // Substract the vector representing the camera position
+      _this.directionVector.sub(_this.camera.position);
+
+      // Normalize the vector, to avoid large numbers from the
+      // projection and substraction
+      _this.directionVector.normalize();
+
+      _this.raycaster.set(_this.camera.position, _this.directionVector);
+
+      // Ask the raycaster for intersects with all objects in the scene:
+      // (The second arguments means "recursive")
+      var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
+
+      if( intersects.length ) {
+
+        // intersections are, by default, ordered by distance,
+        // so we only care for the first one. The intersection
+        // object holds the intersection point, the face that's
+        // been "hit" by the ray, and the object to which that
+        // face belongs. We only care for the object itself.
+        var target = intersects[0].object;
+
+        // make sure we are not clicking the skybox 
+        if( target.name !== 'skybox' ) {
+          console.log(target.parent.url);
+        
+          // TODO: send url to router
+        }
+      }
+    }
 
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
