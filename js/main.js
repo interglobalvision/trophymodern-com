@@ -97,7 +97,7 @@ var ThreeScene = {
 
     loader.load( model.obj, model.mtl, function ( object ) {
 
-      // Hot to calculate/randomize positions ??
+      object.url = model.url;
       object.position.x = model.x;
       object.position.y = model.y;
       object.position.z = model.z;
@@ -142,6 +142,8 @@ var ThreeScene = {
       dirPath + 'left.jpg',
     ], 2048 );
 
+    skybox.name = 'skybox';
+
     _this.scene.add(skybox);
   },
 
@@ -177,7 +179,7 @@ var ThreeScene = {
       _this.mousePosition.clicked = false;
 
       var x = ( _this.mousePosition.x / window.innerWidth ) * 2 - 1;
-      var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1
+      var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1;
 
       _this.directionVector.set(x, y, 1);
 
@@ -186,13 +188,18 @@ var ThreeScene = {
       _this.directionVector.sub(_this.camera.position);
       _this.directionVector.normalize();
 
-      _this.raycaster.set(_this.camera.position, _this.directionVector)
+      _this.raycaster.set(_this.camera.position, _this.directionVector);
 
       var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
 
       if( intersects.length ) {
+        
         var target = intersects[0].object;
-        console.log(target.id);
+
+        if( target.name !== 'skybox' ) {
+          console.log(target.parent.url);
+          console.log(target.id);
+        }
       }
     }
 
