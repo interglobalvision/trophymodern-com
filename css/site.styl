@@ -34,6 +34,7 @@ for pcol in 1..$pcols
 // VARIABLES
 
 $animation-speed-basic = 0.3s
+$animation-speed-long = ($animation-speed-basic * 5)
 
 $margin-small = ($gutter)
 $margin-tiny = ($gutter / 2)
@@ -266,6 +267,11 @@ html
   padding: $margin-small
   max-width: 850px
   margin: $margin-large auto
+  transition: background-color $animation-speed-long
+
+#form-inquiries-output
+  display: none
+  padding: $margin-basic 0
 
 input, textarea
   box-sizing: border-box

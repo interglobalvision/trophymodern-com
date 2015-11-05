@@ -1390,6 +1390,12 @@ canvas {
   padding: 16px;
   max-width: 850px;
   margin: 80px auto;
+  -webkit-transition: background-color 1.5s;
+          transition: background-color 1.5s;
+}
+#form-inquiries-output {
+  display: none;
+  padding: 32px 0;
 }
 input,
 textarea {
