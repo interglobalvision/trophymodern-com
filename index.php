@@ -22,10 +22,13 @@ if( have_posts() ) {
     Models.push({
       obj: "' . $meta["_igv_obj_file"][0] . '",
       mtl: "' . $meta["_igv_mtl_file"][0] . '",
-    });
-  </script>';
+      x: "' . $meta["_igv_pos_x"][0] . '",
+      y: "' . $meta["_igv_pos_y"][0] . '",
+      z: "' . $meta["_igv_pos_z"][0] . '",
+    });';
     }
   }
+  echo '</script>';
 }
 ?>
 <!-- end main-content -->
