@@ -472,6 +472,8 @@ Ajaxy = {
   },
 
   ajaxAfter: function() {
+    var _this = this;
+
     $('.nav').removeClass('nav-hidden');
     $('#main-container').removeClass('main-hidden');
     _this.reset();
