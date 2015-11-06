@@ -144,6 +144,12 @@ html
   box-sizing: border-box
   padding: $margin-basic
   z-index: 999
+  opacity: 1
+  transition: opacity $animation-speed-basic
+
+  &.nav-hidden
+    opacity: 0
+
   svg
     width: 50px
     height: 50px
@@ -159,6 +165,8 @@ html
 #top-right
   top: 0
   right: 0
+  opacity: 1 !important
+  display: block !important
 
 #bottom-left
   bottom: 0
@@ -244,6 +252,12 @@ html
 
 
 // CONTENT LAYOUTS
+#main-container
+  opacity: 1
+  transition: opacity $animation-speed-basic
+
+  &.main-hidden
+    opacity: 0
 
 #page
   color: $color-white-soft

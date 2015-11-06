@@ -1,6 +1,8 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
 /* global $, document, THREE, WP, Models, Swiper, speechSynthesis, SpeechSynthesisUtterance */
 
+var animationSpeed = 700;
+
 var ThreeScene = {
   models: [],
   init: function() {
@@ -327,7 +329,7 @@ TrophyModern.Email = {
     console.log(textStatus);
     console.log(errorThrown);
     console.log(jqXHR);
-  }
+  },
 
 };
 
@@ -411,6 +413,104 @@ TrophyModern.Speech = {
 
 };
 
+// AJAX
+Ajaxy = {
+  init: function() {
+    var _this = this;
+    var ajaxyLinks = 'a.ajax-link';
+
+    // Find all ajaxy links and bind ajax event
+    $(ajaxyLinks).click( function(event) {
+      event.preventDefault();
+
+      var url = event.currentTarget.href;
+
+      _this.ajaxLoad(url);
+
+    });
+
+    // For back button
+    window.onpopstate = function() {
+      _this.ajaxLoad(document.location.origin + document.location.pathname);
+    };
+  },
+
+  reset: function() {
+    var _this = this;
+    $('a.ajax-link').unbind('click');
+    _this.init();
+  },
+
+  ajaxLoad: function(url) {
+    var _this = this;
+
+    $.ajax(url, {
+      beforeSend: function() {
+        _this.ajaxBefore();
+      },
+
+      dataType: 'html',
+      error: function(jqXHR, textStatus) {
+        _this.ajaxErrorHandler(jqXHR, textStatus);
+      },
+
+      success: function(data) {
+        _this.ajaxSuccess(data, url);
+        setTimeout( function() {
+        }, animationSpeed);
+      },
+
+      complete: function() {
+        _this.ajaxAfter();
+      },
+    });
+  },
+
+  ajaxBefore: function() {
+    $('.nav').addClass('nav-hidden');
+    $('#main-container').addClass('main-hidden');
+  },
+
+  ajaxAfter: function() {
+    $('.nav').removeClass('nav-hidden');
+    $('#main-container').removeClass('main-hidden');
+    _this.reset();
+  },
+
+  ajaxErrorHandler: function(jqXHR, textStatus) {
+    alert(textStatus);
+    console.log(jqXHR);
+  },
+
+  ajaxSuccess: function(data,url) {
+
+    // Convert data into proper html to be able to fully parse thru jQuery
+    var respHtml = document.createElement('html');
+
+    respHtml.innerHTML = data;
+
+    // Get changes: body classes, page title, main content, header
+    var $bodyClasses = $('body', respHtml).attr('class');
+    var $content = $('#main-container', respHtml);
+    var $title = $('title', respHtml).text();
+
+    // Push new history state and update title
+    history.pushState(null, $title, url);
+    document.title = $title;
+
+    // Update with new content and classes
+    $('#main-container').html($content.html());
+    $('body').removeAttr('class').addClass($bodyClasses);
+
+    if( $bodyClasses.indexOf('home') !== 0 ) {
+      // TODO: Check if threejs is running, if not, init it.
+    }
+
+    // Rebind initial JS
+    //siteInit();
+  },
+};
+
 $(document).ready(function () {
   'use strict';
 
@@ -421,6 +521,8 @@ $(document).ready(function () {
   TrophyModern.Speech.init();
 
   ThreeScene.init();
+
+  Ajaxy.init();
 
   if (typeof Models !== 'undefined') {
     ThreeScene.addModels();
