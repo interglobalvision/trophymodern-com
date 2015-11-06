@@ -46,7 +46,7 @@ var ThreeScene = {
     _this.addSkybox();
 
     _this.render();
-    
+
     _this.$container.click( function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
@@ -216,18 +216,42 @@ var ThreeScene = {
         // face belongs. We only care for the object itself.
         var target = intersects[0].object;
 
-        // make sure we are not clicking the skybox 
+        // make sure we are not clicking the skybox
         if( target.name !== 'skybox' ) {
           console.log(target.parent.url);
-        
+
           // TODO: send url to router
         }
+      }
+    }
+
+    if (_this.is404) {
+      if (_this.scene.children[3]) {
+        _this.scene.children[3].rotation.x += 0.005;
+        _this.scene.children[3].rotation.y += 0.001;
+        _this.scene.children[3].rotation.z += 0.003;
       }
     }
 
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
 
+  },
+
+  fourohfour: function() {
+    _this = this;
+
+    var model = {
+      name: '404',
+      obj: WP.themeUrl + '/img/404.obj',
+      mtl: WP.themeUrl + '/img/404.mtl',
+      x: 0,
+      y: 0,
+      z: 0,
+    }
+
+    _this.addModel(model);
+    _this.is404 = true;
   },
 };
 
@@ -424,6 +448,10 @@ $(document).ready(function () {
 
   if (typeof Models !== 'undefined') {
     ThreeScene.addModels();
+  }
+
+  if ($('.error404').length) {
+    ThreeScene.fourohfour();
   }
 
 });
