@@ -1,6 +1,6 @@
-    <?php get_template_part('partials/three-scene'); ?>
 
   </section>
+  <?php get_template_part('partials/three-scene'); ?>
 
   <?php get_template_part('partials/scripts'); ?>
 
