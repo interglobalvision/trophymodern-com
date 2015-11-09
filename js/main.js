@@ -328,30 +328,36 @@ TrophyModern.Email = {
   },
 
   onSubmit: function() {
-    _this = this;
+    var _this = this;
 
     _this.$emailForm.css('background-color', 'gray');
     $('#form-inquiries-submit').attr('disabled', true).html('Sending...');
   },
 
   onSuccess: function() {
-    _this = this;
+    var _this = this;
 
     $('#form-inquiries-inputs').hide();
     $('#form-inquiries-output').show();
   },
 
   onEmailError: function(code) {
+    var _this = this;
+
     console.log(code);
   },
 
   onAjaxError: function(jqXHR, textStatus, errorThrown) {
+    var _this = this;
+
     console.log(textStatus);
     console.log(errorThrown);
     console.log(jqXHR);
   },
 
   reset: function() {
+    var _this = this;
+
     _this.$emailForm.off();
     _this.init();
   },
