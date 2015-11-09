@@ -264,6 +264,7 @@ var Layout = {
     var _this = this;
 
     _this.logic();
+    _this.setWindowValues();
 
     $(window).resize(function() {
       _this.setWindowValues();
@@ -274,6 +275,13 @@ var Layout = {
   logic: function() {
     $('#page-copy').css('min-height', this.windowHeight + 'px');
   },
+
+  reset: function() {
+    var _this = this;
+
+    $(window).off('resize');
+    _this.init();
+  }
 };
 
 TrophyModern.Email = {
@@ -439,6 +447,7 @@ Ajaxy = {
     var _this = this;
     $('a.ajax-link').unbind('click');
     _this.init();
+    Layout.reset();
   },
 
   ajaxLoad: function(url) {
