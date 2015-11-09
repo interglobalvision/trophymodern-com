@@ -1268,7 +1268,7 @@ canvas {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
 }
-.nav.nav-hidden {
+.nav.loading {
   opacity: 0;
 }
 .nav svg {
@@ -1391,7 +1391,7 @@ canvas {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
 }
-#main-container.main-hidden {
+#main-container.loading {
   opacity: 0;
 }
 #page {

@@ -289,13 +289,14 @@ var Layout = {
 
     $(window).off('resize');
     _this.init();
-  }
+  },
+
 };
 
 TrophyModern.Email = {
   $emailForm: null,
   init: function() {
-    _this = this;
+    var _this = this;
 
     _this. $emailForm = $('#form-inquiries');
 
@@ -316,8 +317,9 @@ TrophyModern.Email = {
             _this.onEmailError(data.code);
           }
         },
+
         error: function(jqXHR, textStatus, errorThrown) {
-          _this.onAjaxError(jqXHR, textStatus, errorThrown)
+          _this.onAjaxError(jqXHR, textStatus, errorThrown);
         },
       });
 
@@ -437,13 +439,15 @@ TrophyModern.Speech = {
 };
 
 // AJAX
-Ajaxy = {
+TrophyModern.Ajaxy = {
   init: function() {
     var _this = this;
-    var ajaxyLinks = 'a.ajax-link';
+
+    _this.$ajaxyLinks = $('a.ajax-link');
+    _this.$elementsToHide = $('.nav, #main-container'); 
 
     // Find all ajaxy links and bind ajax event
-    $(ajaxyLinks).click( function(event) {
+    _this.$ajaxyLinks.click( function(event) {
       event.preventDefault();
 
       var url = event.currentTarget.href;
@@ -460,11 +464,12 @@ Ajaxy = {
 
   reset: function() {
     var _this = this;
-    $('a.ajax-link').unbind('click');
+
+    // Unbind click from all ajax links
+    _this.$ajaxyLinks.unbind('click');
+
+    // Re initiate
     _this.init();
-    Layout.reset();
-    TrophyModern.Email.reset();
-    ThreeScene.reset();
   },
 
   ajaxLoad: function(url) {
@@ -482,8 +487,6 @@ Ajaxy = {
 
       success: function(data) {
         _this.ajaxSuccess(data, url);
-        setTimeout( function() {
-        }, animationSpeed);
       },
 
       complete: function() {
@@ -493,15 +496,21 @@ Ajaxy = {
   },
 
   ajaxBefore: function() {
-    $('.nav').addClass('nav-hidden');
-    $('#main-container').addClass('main-hidden');
+    var _this = this;
+
+    _this.$elementsToHide.addClass('loading');
   },
 
   ajaxAfter: function() {
     var _this = this;
 
-    $('.nav').removeClass('nav-hidden');
-    $('#main-container').removeClass('main-hidden');
+    _this.$elementsToHide.removeClass('loading');
+
+    // Resets from other parts of the website
+    Layout.reset();
+    TrophyModern.Email.reset();
+    ThreeScene.reset();
+
     _this.reset();
   },
 
@@ -530,12 +539,6 @@ Ajaxy = {
     $('#main-container').html($content.html());
     $('body').removeAttr('class').addClass($bodyClasses);
 
-    if( $bodyClasses.indexOf('home') !== 0 ) {
-      // TODO: Check if threejs is running, if not, init it.
-    }
-
-    // Rebind initial JS
-    //siteInit();
   },
 };
 
@@ -550,7 +553,7 @@ $(document).ready(function () {
 
   ThreeScene.init();
 
-  Ajaxy.init();
+  TrophyModern.Ajaxy.init();
 
   if (typeof Models !== 'undefined') {
     ThreeScene.addModels();
