@@ -69,6 +69,14 @@ var ThreeScene = {
 
   },
 
+  reset: function() {
+    var _this = this;
+
+    if( _this.scene.children.length <= 3 ) {
+      _this.addModels();
+    }
+  },
+
   testContent: function() {
     var _this = this;
 
@@ -285,20 +293,22 @@ var Layout = {
 };
 
 TrophyModern.Email = {
-  emailForm: $('#form-inquiries'),
+  $emailForm: null,
   init: function() {
     _this = this;
 
-    var url = _this.emailForm.attr('action');
+    _this. $emailForm = $('#form-inquiries');
 
-    _this.emailForm.submit(function(e) {
+    var url = _this.$emailForm.attr('action');
+
+    _this.$emailForm.on('submit', function(e) {
       e.preventDefault();
       _this.onSubmit();
 
       $.ajax({
         type: 'POST',
         url: url,
-        data: _this.emailForm.serialize(),
+        data: _this.$emailForm.serialize(),
         success: function(data) {
           if (data.code === 1) {
             _this.onSuccess();
@@ -318,7 +328,7 @@ TrophyModern.Email = {
   onSubmit: function() {
     _this = this;
 
-    _this.emailForm.css('background-color', 'gray');
+    _this.$emailForm.css('background-color', 'gray');
     $('#form-inquiries-submit').attr('disabled', true).html('Sending...');
   },
 
@@ -337,6 +347,11 @@ TrophyModern.Email = {
     console.log(textStatus);
     console.log(errorThrown);
     console.log(jqXHR);
+  },
+
+  reset: function() {
+    _this.$emailForm.off();
+    _this.init();
   },
 
 };
@@ -448,6 +463,8 @@ Ajaxy = {
     $('a.ajax-link').unbind('click');
     _this.init();
     Layout.reset();
+    TrophyModern.Email.reset();
+    ThreeScene.reset();
   },
 
   ajaxLoad: function(url) {
