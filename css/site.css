@@ -1214,7 +1214,7 @@ em {
   color: #f00;
 }
 .font-color-gray {
-  color: #808080;
+  color: #c8c8c8;
 }
 .font-tracking-wider {
   letter-spacing: 0.025em;
@@ -1245,7 +1245,7 @@ html {
   background-color: #f00;
 }
 .background-gray {
-  background-color: #808080;
+  background-color: #c8c8c8;
 }
 canvas {
   width: 100%;
@@ -1258,8 +1258,9 @@ canvas {
   z-index: 999;
 }
 .nav svg {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  fill: #f00;
 }
 #logo {
   width: auto;
@@ -1354,7 +1355,7 @@ canvas {
   padding: 32px;
 }
 #exhibitions {
-  background-color: #808080;
+  background-color: #c8c8c8;
 }
 #exhibitions img {
   max-width: 100%;
@@ -1400,8 +1401,13 @@ canvas {
 input,
 textarea {
   box-sizing: border-box;
-  padding: 16px;
+  padding: 8px 16px;
   margin: 8px 0;
+  background: #e6e6e6;
+}
+input:focus,
+textarea:focus {
+  outline: 0;
 }
 input {
   width: 49%;
@@ -1411,11 +1417,16 @@ textarea {
   width: 100%;
 }
 button {
-  padding: 8px 32px;
+  padding: 8px 32px 0;
   margin-top: 16px;
-  background-color: #808080;
+  background-color: #c8c8c8;
   color: #fdfdfd;
   border-radius: 8px;
+}
+textarea:focus,
+input:focus,
+button:focus {
+  outline: 0;
 }
 @media screen and (max-width: 1122px) {
   body {

@@ -54,7 +54,8 @@ $color-black-soft = rgb(14, 14, 14)
 $color-white-soft = rgb(253, 253, 253)
 
 $color-red = red
-$color-gray = gray
+$color-gray = rgb(200,200,200) 
+$color-light-gray = rgb(230,230,230) 
 
 // TYPOGRAPHY
 
@@ -145,8 +146,9 @@ html
   padding: $margin-basic
   z-index: 999
   svg
-    width: 50px
-    height: 50px
+    width: 40px
+    height: 40px
+    fill: $color-red
 
 #logo
   width: auto
@@ -275,8 +277,11 @@ html
 
 input, textarea
   box-sizing: border-box
-  padding: $margin-small
+  padding: $margin-tiny $margin-small
   margin: $margin-tiny 0
+  background: $color-light-gray
+  &:focus
+    outline: 0
 
 input
   width: 49%
@@ -286,11 +291,15 @@ textarea
   width: 100%
 
 button
-  padding: $margin-tiny $margin-basic
+  padding: $margin-tiny $margin-basic 0
   margin-top: $margin-small
   background-color: $color-gray
   color: $color-white-soft
   border-radius: $margin-tiny
+  
+textarea, input, button
+  &:focus
+    outline: 0
 
 
 // MEDIA QUERIES
