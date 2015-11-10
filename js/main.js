@@ -232,8 +232,9 @@ var ThreeScene = {
 
         // make sure we are not clicking the skybox
         if( target.name !== 'skybox' ) {
-          console.log(target.parent.url);
+          console.log('Going to: ', target.parent.url);
 
+          TrophyModern.Ajaxy.ajaxLoad( target.parent.url );
           // TODO: send url to router
         }
       }
@@ -271,22 +272,18 @@ var ThreeScene = {
 
 var TrophyModern = {
   init: function() {
-    $(document).ready(function () {
       var mySwiper = new Swiper('.swiper-container', {
         keyboardControl: true,
         centeredSlides: true,
         spaceBetween: 60,
         slidesPerView: 'auto',
-        hashnav: true,
         nextButton: '.swiper-next',
         prevButton: '.swiper-prev',
       });
-    });
   },
 
 };
 
-TrophyModern.init();
 
 var Layout = {
   windowWidth: $(window).width(),
@@ -536,6 +533,7 @@ TrophyModern.Ajaxy = {
     _this.reset();
 
     // Resets from other parts of the website
+    TrophyModern.init();
     Layout.reset();
     TrophyModern.Email.reset();
     TrophyModern.Speech.afterPageload();
@@ -577,8 +575,8 @@ TrophyModern.Ajaxy = {
 $(document).ready(function () {
   'use strict';
 
+  TrophyModern.init();
   TrophyModern.Ajaxy.init();
-
   TrophyModern.Email.init();
   TrophyModern.Speech.init();
 
