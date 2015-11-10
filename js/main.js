@@ -48,7 +48,7 @@ var ThreeScene = {
     _this.addSkybox();
 
     _this.render();
-    
+
     _this.$container.click( function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
@@ -226,10 +226,10 @@ var ThreeScene = {
         // face belongs. We only care for the object itself.
         var target = intersects[0].object;
 
-        // make sure we are not clicking the skybox 
+        // make sure we are not clicking the skybox
         if( target.name !== 'skybox' ) {
           console.log(target.parent.url);
-        
+
           // TODO: send url to router
         }
       }
@@ -367,24 +367,9 @@ TrophyModern.Email = {
 TrophyModern.Speech = {
   mute: false,
   speakContent: undefined,
+  speakOnLoad: undefined,
   init: function() {
     var _this = this;
-    var speakOnLoad = $('.speak-on-load').first();
-
-    speechSynthesis.cancel();
-
-    if (!_this.mute && speakOnLoad.length) {
-      _this.speakContent = new SpeechSynthesisUtterance();
-      _this.speakContent.text = speakOnLoad.text();
-      _this.speakContent.lang = 'en-US';
-      _this.speakContent.rate = 1;
-      _this.speakContent.onend = function() {
-        _this.speakContent = undefined;
-        speechSynthesis.cancel();
-      };
-
-      _this.speak();
-    }
 
     $('.nav-mute-toggle').on({
       click: function() {
@@ -392,6 +377,18 @@ TrophyModern.Speech = {
       },
     });
 
+    _this.afterPageload();
+
+  },
+
+  afterPageload: function() {
+    var _this = this;
+
+    _this.speakOnLoad = $('.speak-on-load').first();
+
+    if (!_this.mute && _this.speakOnLoad.length) {
+      _this.loadElement(_this.speakOnLoad);
+    }
   },
 
   muteToggle: function() {
@@ -408,19 +405,16 @@ TrophyModern.Speech = {
     }
   },
 
-  loadElement: function(selector) {
+  loadElement: function($element) {
     var _this = this;
 
     speechSynthesis.cancel();
 
+    _this.speakContent = undefined;
     _this.speakContent = new SpeechSynthesisUtterance();
-    _this.speakContent.text = $(selector).text();
+    _this.speakContent.text = $element.text();
     _this.speakContent.lang = 'en-US';
     _this.speakContent.rate = 1;
-    _this.speakContent.onend = function() {
-      _this.speakContent = undefined;
-      speechSynthesis.cancel();
-    };
 
     if (!_this.mute) {
       _this.speak();
@@ -439,7 +433,6 @@ TrophyModern.Speech = {
 
   resume: function() {
     speechSynthesis.resume(this.speakContent);
-
   },
 
 };
@@ -450,7 +443,7 @@ TrophyModern.Ajaxy = {
     var _this = this;
 
     _this.$ajaxyLinks = $('a.ajax-link');
-    _this.$elementsToHide = $('.nav, #main-container'); 
+    _this.$elementsToHide = $('.nav, #main-container');
 
     // Find all ajaxy links and bind ajax event
     _this.$ajaxyLinks.click( function(event) {
@@ -512,12 +505,13 @@ TrophyModern.Ajaxy = {
 
     _this.$elementsToHide.removeClass('loading');
 
+    _this.reset();
+
     // Resets from other parts of the website
     Layout.reset();
     TrophyModern.Email.reset();
+    TrophyModern.Speech.afterPageload();
     ThreeScene.reset();
-
-    _this.reset();
   },
 
   ajaxErrorHandler: function(jqXHR, textStatus) {
@@ -551,15 +545,14 @@ TrophyModern.Ajaxy = {
 $(document).ready(function () {
   'use strict';
 
+  TrophyModern.Ajaxy.init();
+
   TrophyModern.Email.init();
+  TrophyModern.Speech.init();
 
   Layout.init();
 
-  TrophyModern.Speech.init();
-
   ThreeScene.init();
-
-  TrophyModern.Ajaxy.init();
 
   if (typeof Models !== 'undefined') {
     ThreeScene.addModels();
