@@ -117,10 +117,11 @@ var ThreeScene = {
       // Set the object post url
       object.url = model.url;
 
-      // Set object position
-      object.position.x = model.x;
-      object.position.y = model.y;
-      object.position.z = model.z;
+      // Set object position and rotation
+      object.position.x = model.position.x;
+      object.position.y = model.position.y;
+      object.position.z = model.position.z;
+      object.rotation.y = model.rotation.y;
 
       //_this.models.push( object );
       _this.scene.add(object);
