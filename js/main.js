@@ -267,6 +267,7 @@ var ThreeScene = {
               node.material.transparent = true;
             }
           });
+
           _this.lastHovered = false;
         }
       }
@@ -298,7 +299,7 @@ var ThreeScene = {
       x: 0,
       y: 0,
       z: 0,
-    }
+    };
 
     _this.addModel(model);
     _this.is404 = true;
@@ -318,7 +319,6 @@ var TrophyModern = {
   },
 
 };
-
 
 var Layout = {
   windowWidth: $(window).width(),
