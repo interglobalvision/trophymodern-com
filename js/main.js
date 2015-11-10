@@ -48,7 +48,14 @@ var ThreeScene = {
     _this.addSkybox();
 
     if (WP.isAdmin == true) {
-      _this.scene.add( new THREE.AxisHelper(40) );
+     var axes = new THREE.AxisHelper(5);
+
+     axes.name = 'axes';
+     axes.scale.x = 0.5;
+     axes.scale.y = 0.5;
+     axes.scale.z = 0.5;
+
+     _this.scene.add(axes);
     }
 
     _this.render();
@@ -227,7 +234,7 @@ var ThreeScene = {
       var target = intersects[0].object;
 
       // If hovering something that is not the skybox
-      if (target.name !== 'skybox') {
+      if (target.name !== 'skybox' && target.name !== 'axes') {
 
         $('body').addClass('u-pointer');
 
