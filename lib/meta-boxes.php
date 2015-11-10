@@ -115,6 +115,20 @@ function igv_cmb_metaboxes() {
   	) );
 
   	$page_metabox->add_field( array(
+  		'name'       => __( 'Audio Text', 'cmb2' ),
+  		'desc'       => __( 'Text to speak on load', 'cmb2' ),
+  		'id'         => $prefix . 'speak_on_load',
+  		'type'       => 'wysiwyg',
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Audio Text', 'cmb2' ),
+  		'desc'       => __( 'Text to speak on load', 'cmb2' ),
+  		'id'         => $prefix . 'speak_on_load',
+  		'type'       => 'wysiwyg',
+  	) );
+
+  	$page_metabox->add_field( array(
   		'name'       => __( 'Background color', 'cmb2' ),
   		'id'         => $prefix . 'color',
       'type'             => 'select',
