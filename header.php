@@ -51,6 +51,15 @@
 <body <?php body_class(); ?>>
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
+<div id="loading">
+  <div id="loading-logo">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
+    ?>
+    <div id="loading-overlay"></div>
+  </div>
+</div>
+
 <nav class="nav" id="top-left">
   <a class="u-pointer conditional-nav nav-home ajax-link" href="<?php echo home_url('exhibition/'); ?>">
     <?php

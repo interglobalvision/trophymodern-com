@@ -132,8 +132,10 @@ var ThreeScene = {
       var percentComplete = xhr.loaded / xhr.total * 100;
 
       if (percentComplete === 100) {
+        $('#loading').addClass('loaded');
         console.log('Model loaded');
       } else {
+        $('#loading-overlay').css('width', (100 - Math.round(percentComplete, 2)) + '%');
         console.log( Math.round(percentComplete, 2) + '% downloaded' );
       }
     }
