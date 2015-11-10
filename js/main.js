@@ -40,24 +40,24 @@ var ThreeScene = {
 
     directionalLight.position.set(0, 0, 1).normalize();
 
-    _this.scene.add( ambient );
-    _this.scene.add( directionalLight );
+    _this.scene.add(ambient);
+    _this.scene.add(directionalLight);
 
     _this.camera.position.z = 5;
 
     _this.addSkybox();
 
-    if( WP.isAdmin == true ) {
+    if (WP.isAdmin == true) {
       _this.scene.add( new THREE.AxisHelper(40) );
     }
 
     _this.render();
 
-    _this.$container.click( function(event) {
+    _this.$container.click(function(event) {
       _this.mousePosition.clicked = true;
     });
 
-    _this.$container.mousemove( function(event) {
+    _this.$container.mousemove(function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
     });
@@ -72,14 +72,14 @@ var ThreeScene = {
     _this.camera.aspect = window.innerWidth / window.innerHeight;
     _this.camera.updateProjectionMatrix();
 
-    _this.renderer.setSize( window.innerWidth, window.innerHeight );
+    _this.renderer.setSize(window.innerWidth, window.innerHeight);
 
   },
 
   reset: function() {
     var _this = this;
 
-    if( _this.scene.children.length <= 3 ) {
+    if (_this.scene.children.length <= 3) {
       _this.addModels();
     }
   },
@@ -88,7 +88,7 @@ var ThreeScene = {
     var _this = this;
 
     var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshBasicMaterial( {color: 0x00ff00,} );
+    var material = new THREE.MeshBasicMaterial({color: 0x00ff00,});
 
     _this.cube = new THREE.Mesh(geometry, material);
 
@@ -100,19 +100,19 @@ var ThreeScene = {
     var _this = this;
 
     // Models is declared inside the loop on index.php. It contains an array of objects.
-    for(var i = 0; i < Models.length; i++) {
-      _this.addModel( Models[i] );
+    for (var i = 0; i < Models.length; i++) {
+      _this.addModel(Models[i]);
     }
   },
 
   addModel: function(model) {
     var _this = this;
 
-    THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+    THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
 
     var loader = new THREE.OBJMTLLoader();
 
-    loader.load( model.obj, model.mtl, function ( object ) {
+    loader.load(model.obj, model.mtl, function (object) {
 
       // Set the object post url
       object.url = model.url;
@@ -123,21 +123,21 @@ var ThreeScene = {
       object.position.z = model.z;
 
       //_this.models.push( object );
-      _this.scene.add( object );
+      _this.scene.add(object);
 
-    }, _this.onProgress, _this.onError );
+    }, _this.onProgress, _this.onError);
   },
 
   onProgress: function(xhr) {
     var _this = this;
 
-    if ( xhr.lengthComputable ) {
+    if (xhr.lengthComputable) {
       var percentComplete = xhr.loaded / xhr.total * 100;
 
       if (percentComplete === 100) {
         console.log('Model loaded');
       } else {
-        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+        console.log(Math.round(percentComplete, 2) + '% downloaded');
       }
     }
   },
@@ -160,7 +160,7 @@ var ThreeScene = {
       dirPath + 'bottom.jpg',
       dirPath + 'right.jpg',
       dirPath + 'left.jpg',
-    ], 2048 );
+    ], 2048);
 
     skybox.name = 'skybox';
 
@@ -168,7 +168,7 @@ var ThreeScene = {
   },
 
   makeSkybox: function(urls, size) {
-    var skyboxCubemap = THREE.ImageUtils.loadTextureCube( urls );
+    var skyboxCubemap = THREE.ImageUtils.loadTextureCube(urls);
 
     skyboxCubemap.format = THREE.RGBFormat;
 
@@ -190,11 +190,6 @@ var ThreeScene = {
 
     requestAnimationFrame(_this.render.bind(_this));
 
-    /*
-       _this.cube.rotation.x += 0.001;
-       _this.cube.rotation.y += 0.0011;
-       */
-
     // The following will translate the mouse coordinates into a number
     // ranging from -1 to 1, where
     // x == -1 && y == -1 means top-left, and
@@ -206,7 +201,7 @@ var ThreeScene = {
     _this.directionVector.set(x, y, 1);
 
     // Unpropject the vector
-    _this.directionVector.unproject( _this.camera );
+    _this.directionVector.unproject(_this.camera);
 
     // Substract the vector representing the camera position
     _this.directionVector.sub(_this.camera.position);
@@ -221,7 +216,7 @@ var ThreeScene = {
     // (The second arguments means "recursive")
     var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
 
-    if( intersects.length ) {
+    if (intersects.length) {
 
       // intersections are, by default, ordered by distance,
       // so we only care for the first one. The intersection
@@ -231,17 +226,17 @@ var ThreeScene = {
       var target = intersects[0].object;
 
       // If hovering something that is not the skybox
-      if( target.name !== 'skybox' ) {
+      if (target.name !== 'skybox') {
 
         // Rotate hovered object
         target.parent.rotation.x += Math.sin(new Date().getTime() * 0.001 ) * 0.0001 + 0.005;
-        target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.0002 + 0.005; 
+        target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.0002 + 0.005;
         target.parent.rotation.z += Math.sin(new Date().getTime() * 0.002 ) * 0.0001 - 0.005;
 
         // Change hovered object opacity thruout all branches of the paternt object
-        if( target.parent !== _this.lastHovered ) {
-          target.parent.traverse( function( node ) {
-            if( node.material ) {
+        if (target.parent !== _this.lastHovered) {
+          target.parent.traverse( function(node) {
+            if (node.material) {
               node.material.opacity = 0.5;
               node.material.transparent = true;
             }
@@ -259,10 +254,10 @@ var ThreeScene = {
       } else {
         // If we are hovering the skybox
 
-        if( _this.lastHovered ) {
+        if (_this.lastHovered) {
           // Reset everything's opacity
-          target.parent.traverse( function( node ) {
-            if( node.material ) {
+          target.parent.traverse(function(node) {
+            if (node.material) {
               node.material.opacity = 1;
               node.material.transparent = true;
             }
@@ -506,7 +501,7 @@ TrophyModern.Ajaxy = {
     _this.$elementsToHide = $('.nav, #main-container');
 
     // Find all ajaxy links and bind ajax event
-    _this.$ajaxyLinks.click( function(event) {
+    _this.$ajaxyLinks.click(function(event) {
       event.preventDefault();
 
       var url = event.currentTarget.href;
