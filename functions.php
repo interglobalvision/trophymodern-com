@@ -6,7 +6,7 @@ function scripts_and_styles_method() {
   // library.js is to bundle plugins. my.js is your scripts. enqueue more files as needed
   $jslib = $templateuri . "library.js";
   wp_enqueue_script( 'jslib', $jslib,'','',true);
-  $myscripts = $templateuri . "main.min.js";
+  $myscripts = $templateuri . "main.js";
 
   wp_register_script( 'myscripts', $myscripts );
 

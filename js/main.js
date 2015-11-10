@@ -5,8 +5,15 @@ var animationSpeed = 700;
 
 var ThreeScene = {
   models: [],
+  filesLength: undefined,
+  filesLoaded: 0,
+  percentLoaded: 0,
   init: function() {
     var _this = this;
+
+    if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
+      $('#loading').show();
+    }
 
     _this.$container = $('#three-scene');
 
@@ -86,9 +93,11 @@ var ThreeScene = {
   reset: function() {
     var _this = this;
 
-    if (_this.scene.children.length <= 3) {
+    if (_this.percentLoaded === 0) {
+      $('#loading').show();
       _this.addModels();
     }
+
   },
 
   testContent: function() {
@@ -106,13 +115,30 @@ var ThreeScene = {
   addModels: function() {
     var _this = this;
 
+    _this.filesLength = Models.length * 2;
+
     // Models is declared inside the loop on index.php. It contains an array of objects.
     for (var i = 0; i < Models.length; i++) {
-      _this.addModel(Models[i]);
+      _this.addModel(Models[i], function() {
+
+        _this.filesLoaded++;
+
+        _this.percentLoaded = (_this.filesLoaded / _this.filesLength) * 100;
+
+        console.log('Files percent loaded', _this.percentLoaded);
+
+        if (_this.percentLoaded === 100) {
+          $('#loading').addClass('loaded');
+        } else {
+          $('#loading-overlay').css('width', (100 - Math.round(_this.percentLoaded, 2)) + '%');
+        }
+
+      });
     }
+
   },
 
-  addModel: function(model) {
+  addModel: function(model, callback) {
     var _this = this;
 
     THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
@@ -133,19 +159,23 @@ var ThreeScene = {
       //_this.models.push( object );
       _this.scene.add(object);
 
-    }, _this.onProgress, _this.onError);
+    }, function(xhr) {
+
+      _this.onProgress(xhr, callback);
+
+    }, _this.onError);
   },
 
-  onProgress: function(xhr) {
+  onProgress: function(xhr, callback) {
     var _this = this;
 
     if (xhr.lengthComputable) {
       var percentComplete = xhr.loaded / xhr.total * 100;
 
       if (percentComplete === 100) {
-        console.log('Model loaded');
+        callback();
       } else {
-        console.log(Math.round(percentComplete, 2) + '% downloaded');
+        console.log('file ' + xhr.currentTarget.responseURL + ': ' + Math.round(percentComplete, 2) + '% downloaded');
       }
     }
   },
@@ -510,7 +540,7 @@ TrophyModern.Ajaxy = {
     var _this = this;
 
     _this.$ajaxyLinks = $('a.ajax-link');
-    _this.$elementsToHide = $('.nav, #main-container');
+    _this.$elementsToHide = $('.nav, #main-container, #three-scene');
 
     // Find all ajaxy links and bind ajax event
     _this.$ajaxyLinks.click(function(event) {
@@ -569,6 +599,10 @@ TrophyModern.Ajaxy = {
 
   ajaxAfter: function() {
     var _this = this;
+
+    if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
+      $('#loading').show();
+    }
 
     _this.$elementsToHide.removeClass('loading');
 
