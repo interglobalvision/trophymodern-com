@@ -54,9 +54,12 @@ var ThreeScene = {
     _this.render();
 
     _this.$container.click( function(event) {
+      _this.mousePosition.clicked = true;
+    });
+
+    _this.$container.mousemove( function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
-      _this.mousePosition.clicked = true;
     });
 
     window.addEventListener('resize', _this.resize.bind(_this), false);
@@ -187,57 +190,89 @@ var ThreeScene = {
 
     requestAnimationFrame(_this.render.bind(_this));
 
-/*
-    _this.cube.rotation.x += 0.001;
-    _this.cube.rotation.y += 0.0011;
-*/
+    /*
+       _this.cube.rotation.x += 0.001;
+       _this.cube.rotation.y += 0.0011;
+       */
 
-    if (_this.mousePosition.clicked) {
-      _this.mousePosition.clicked = false;
+    // The following will translate the mouse coordinates into a number
+    // ranging from -1 to 1, where
+    // x == -1 && y == -1 means top-left, and
+    // x ==  1 && y ==  1 means bottom right
+    var x = ( _this.mousePosition.x / window.innerWidth ) * 2 - 1;
+    var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1;
 
-      // The following will translate the mouse coordinates into a number
-      //     // ranging from -1 to 1, where
-      //         //      x == -1 && y == -1 means top-left, and
-      //             //      x ==  1 && y ==  1 means bottom right
-      var x = ( _this.mousePosition.x / window.innerWidth ) * 2 - 1;
-      var y = -( _this.mousePosition.y / window.innerHeight ) * 2 + 1;
+    // Set our direction vector to those initial values
+    _this.directionVector.set(x, y, 1);
 
-      // Set our direction vector to those initial values
-      _this.directionVector.set(x, y, 1);
+    // Unpropject the vector
+    _this.directionVector.unproject( _this.camera );
 
-      // Unpropject the vector
-      _this.directionVector.unproject( _this.camera );
+    // Substract the vector representing the camera position
+    _this.directionVector.sub(_this.camera.position);
 
-      // Substract the vector representing the camera position
-      _this.directionVector.sub(_this.camera.position);
+    // Normalize the vector, to avoid large numbers from the
+    // projection and substraction
+    _this.directionVector.normalize();
 
-      // Normalize the vector, to avoid large numbers from the
-      // projection and substraction
-      _this.directionVector.normalize();
+    _this.raycaster.set(_this.camera.position, _this.directionVector);
 
-      _this.raycaster.set(_this.camera.position, _this.directionVector);
+    // Ask the raycaster for intersects with all objects in the scene:
+    // (The second arguments means "recursive")
+    var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
 
-      // Ask the raycaster for intersects with all objects in the scene:
-      // (The second arguments means "recursive")
-      var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
+    if( intersects.length ) {
 
-      if( intersects.length ) {
+      // intersections are, by default, ordered by distance,
+      // so we only care for the first one. The intersection
+      // object holds the intersection point, the face that's
+      // been "hit" by the ray, and the object to which that
+      // face belongs. We only care for the object itself.
+      var target = intersects[0].object;
 
-        // intersections are, by default, ordered by distance,
-        // so we only care for the first one. The intersection
-        // object holds the intersection point, the face that's
-        // been "hit" by the ray, and the object to which that
-        // face belongs. We only care for the object itself.
-        var target = intersects[0].object;
+      // If hovering something that is not the skybox
+      if( target.name !== 'skybox' ) {
 
-        // make sure we are not clicking the skybox
-        if( target.name !== 'skybox' ) {
+        // Rotate hovered object
+        target.parent.rotation.x += Math.sin(new Date().getTime() * 0.001 ) * 0.0001 + 0.005;
+        target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.0002 + 0.005; 
+        target.parent.rotation.z += Math.sin(new Date().getTime() * 0.002 ) * 0.0001 - 0.005;
+
+        // Change hovered object opacity thruout all branches of the paternt object
+        if( target.parent !== _this.lastHovered ) {
+          target.parent.traverse( function( node ) {
+            if( node.material ) {
+              node.material.opacity = 0.5;
+              node.material.transparent = true;
+            }
+          });
+
+          _this.lastHovered = target.parent;
+        }
+
+        // If clicked
+        if (_this.mousePosition.clicked) {
           console.log('Going to: ', target.parent.url);
-
           TrophyModern.Ajaxy.ajaxLoad( target.parent.url );
-          // TODO: send url to router
+        }
+
+      } else {
+        // If we are hovering the skybox
+
+        if( _this.lastHovered ) {
+          // Reset everything's opacity
+          target.parent.traverse( function( node ) {
+            if( node.material ) {
+              node.material.opacity = 1;
+              node.material.transparent = true;
+            }
+          });
+          _this.lastHovered = false;
         }
       }
+
+      _this.mousePosition.clicked = false;
+
     }
 
     if (_this.is404) {
