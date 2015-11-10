@@ -71,12 +71,12 @@
 </nav>
 
 <nav class="nav" id="bottom-left">
-  <a class="u-pointer nav-mute-toggle ajax-link" id="nav-mute">
+  <a class="u-pointer nav-mute-toggle" id="nav-mute">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/mute.svg');
     ?>
   </a>
-  <a class="u-pointer nav-mute-toggle ajax-link" id="nav-unmute">
+  <a class="u-pointer nav-mute-toggle" id="nav-unmute">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/unmute.svg');
     ?>
