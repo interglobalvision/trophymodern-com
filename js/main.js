@@ -48,9 +48,12 @@ var ThreeScene = {
     _this.addSkybox();
 
     if (WP.isAdmin == true) {
-     var axes = new THREE.AxisHelper(40);
-  
+     var axes = new THREE.AxisHelper(5);
+
      axes.name = 'axes';
+     axes.scale.x = 0.5;
+     axes.scale.y = 0.5;
+     axes.scale.z = 0.5;
 
      _this.scene.add(axes);
     }
