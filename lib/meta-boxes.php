@@ -106,6 +106,14 @@ function igv_cmb_metaboxes() {
   		'default'    => '0',
   	) );
 
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Rotation Y', 'cmb2' ),
+  		'desc'       => 'Suggested values in range of -/+ 359',
+  		'id'         => $prefix . 'rotation_y',
+  		'type'       => 'text_number',
+  		'default'    => '0',
+  	) );
+
     // pages
 
 	 	$page_metabox = new_cmb2_box( array(
