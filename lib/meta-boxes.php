@@ -114,13 +114,6 @@ function igv_cmb_metaboxes() {
   		'object_types'  => array( 'page', ), // Post type
   	) );
 
-  	$page_metabox->add_field( array(
-  		'name'       => __( 'Audio Text', 'cmb2' ),
-  		'desc'       => __( 'Text to speak on load', 'cmb2' ),
-  		'id'         => $prefix . 'speak_on_load',
-  		'type'       => 'wysiwyg',
-  	) );
-
   	$post_metabox->add_field( array(
   		'name'       => __( 'Audio Text', 'cmb2' ),
   		'desc'       => __( 'Text to speak on load', 'cmb2' ),
