@@ -228,6 +228,8 @@ var ThreeScene = {
       // If hovering something that is not the skybox
       if (target.name !== 'skybox') {
 
+        $('body').addClass('u-pointer');
+
         // Rotate hovered object
         target.parent.rotation.x += Math.sin(new Date().getTime() * 0.001 ) * 0.0001 + 0.005;
         target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.0002 + 0.005;
@@ -252,7 +254,9 @@ var ThreeScene = {
         }
 
       } else {
-        // If we are hovering the skybox
+        // If we are hovering the skybox AKA nothing
+
+        $('body').removeClass('u-pointer');
 
         if (_this.lastHovered) {
           // Reset everything's opacity
