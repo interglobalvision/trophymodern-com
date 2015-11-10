@@ -235,9 +235,33 @@ var ThreeScene = {
       }
     }
 
+    if (_this.is404) {
+      if (_this.scene.children[3]) {
+        _this.scene.children[3].rotation.x += 0.005;
+        _this.scene.children[3].rotation.y += 0.001;
+        _this.scene.children[3].rotation.z += 0.003;
+      }
+    }
+
     _this.controls.update();
     _this.renderer.render(_this.scene, _this.camera);
 
+  },
+
+  fourohfour: function() {
+    _this = this;
+
+    var model = {
+      name: '404',
+      obj: WP.themeUrl + '/img/404.obj',
+      mtl: WP.themeUrl + '/img/404.mtl',
+      x: 0,
+      y: 0,
+      z: 0,
+    }
+
+    _this.addModel(model);
+    _this.is404 = true;
   },
 };
 
@@ -512,6 +536,10 @@ TrophyModern.Ajaxy = {
     TrophyModern.Email.reset();
     TrophyModern.Speech.afterPageload();
     ThreeScene.reset();
+
+    if ($('.error404').length) {
+      ThreeScene.fourohfour();
+    }
   },
 
   ajaxErrorHandler: function(jqXHR, textStatus) {
@@ -556,6 +584,10 @@ $(document).ready(function () {
 
   if (typeof Models !== 'undefined') {
     ThreeScene.addModels();
+  }
+
+  if ($('.error404').length) {
+    ThreeScene.fourohfour();
   }
 
 });
