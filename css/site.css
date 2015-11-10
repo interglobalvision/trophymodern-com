@@ -1247,6 +1247,14 @@ html {
 .background-gray {
   background-color: #808080;
 }
+#three-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
 canvas {
   width: 100%;
   height: 100%;
@@ -1256,6 +1264,12 @@ canvas {
   box-sizing: border-box;
   padding: 32px;
   z-index: 999;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+.nav.loading {
+  opacity: 0;
 }
 .nav svg {
   width: 50px;
@@ -1272,6 +1286,8 @@ canvas {
 #top-right {
   top: 0;
   right: 0;
+  opacity: 1 !important;
+  display: block !important;
 }
 #bottom-left {
   bottom: 0;
@@ -1369,6 +1385,14 @@ canvas {
 }
 .exhibition-header {
   margin-bottom: 1em;
+}
+#main-container {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+#main-container.loading {
+  opacity: 0;
 }
 #page {
   color: #fdfdfd;

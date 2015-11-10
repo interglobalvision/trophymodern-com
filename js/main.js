@@ -1,6 +1,8 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
 /* global $, document, THREE, WP, Models, Swiper, speechSynthesis, SpeechSynthesisUtterance */
 
+var animationSpeed = 700;
+
 var ThreeScene = {
   models: [],
   init: function() {
@@ -65,6 +67,14 @@ var ThreeScene = {
 
     _this.renderer.setSize( window.innerWidth, window.innerHeight );
 
+  },
+
+  reset: function() {
+    var _this = this;
+
+    if( _this.scene.children.length <= 3 ) {
+      _this.addModels();
+    }
   },
 
   testContent: function() {
@@ -286,6 +296,7 @@ var Layout = {
     var _this = this;
 
     _this.logic();
+    _this.setWindowValues();
 
     $(window).resize(function() {
       _this.setWindowValues();
@@ -296,23 +307,33 @@ var Layout = {
   logic: function() {
     $('#page-copy').css('min-height', this.windowHeight + 'px');
   },
+
+  reset: function() {
+    var _this = this;
+
+    $(window).off('resize');
+    _this.init();
+  },
+
 };
 
 TrophyModern.Email = {
-  emailForm: $('#form-inquiries'),
+  $emailForm: null,
   init: function() {
-    _this = this;
+    var _this = this;
 
-    var url = _this.emailForm.attr('action');
+    _this. $emailForm = $('#form-inquiries');
 
-    _this.emailForm.submit(function(e) {
+    var url = _this.$emailForm.attr('action');
+
+    _this.$emailForm.on('submit', function(e) {
       e.preventDefault();
       _this.onSubmit();
 
       $.ajax({
         type: 'POST',
         url: url,
-        data: _this.emailForm.serialize(),
+        data: _this.$emailForm.serialize(),
         success: function(data) {
           if (data.code === 1) {
             _this.onSuccess();
@@ -320,8 +341,9 @@ TrophyModern.Email = {
             _this.onEmailError(data.code);
           }
         },
+
         error: function(jqXHR, textStatus, errorThrown) {
-          _this.onAjaxError(jqXHR, textStatus, errorThrown)
+          _this.onAjaxError(jqXHR, textStatus, errorThrown);
         },
       });
 
@@ -330,52 +352,48 @@ TrophyModern.Email = {
   },
 
   onSubmit: function() {
-    _this = this;
+    var _this = this;
 
-    _this.emailForm.css('background-color', 'gray');
+    _this.$emailForm.css('background-color', 'gray');
     $('#form-inquiries-submit').attr('disabled', true).html('Sending...');
   },
 
   onSuccess: function() {
-    _this = this;
+    var _this = this;
 
     $('#form-inquiries-inputs').hide();
     $('#form-inquiries-output').show();
   },
 
   onEmailError: function(code) {
+    var _this = this;
+
     console.log(code);
   },
 
   onAjaxError: function(jqXHR, textStatus, errorThrown) {
+    var _this = this;
+
     console.log(textStatus);
     console.log(errorThrown);
     console.log(jqXHR);
-  }
+  },
+
+  reset: function() {
+    var _this = this;
+
+    _this.$emailForm.off();
+    _this.init();
+  },
 
 };
 
 TrophyModern.Speech = {
   mute: false,
   speakContent: undefined,
+  speakOnLoad: undefined,
   init: function() {
     var _this = this;
-    var speakOnLoad = $('.speak-on-load').first();
-
-    speechSynthesis.cancel();
-
-    if (!_this.mute && speakOnLoad.length) {
-      _this.speakContent = new SpeechSynthesisUtterance();
-      _this.speakContent.text = speakOnLoad.text();
-      _this.speakContent.lang = 'en-US';
-      _this.speakContent.rate = 1;
-      _this.speakContent.onend = function() {
-        _this.speakContent = undefined;
-        speechSynthesis.cancel();
-      };
-
-      _this.speak();
-    }
 
     $('.nav-mute-toggle').on({
       click: function() {
@@ -383,6 +401,18 @@ TrophyModern.Speech = {
       },
     });
 
+    _this.afterPageload();
+
+  },
+
+  afterPageload: function() {
+    var _this = this;
+
+    _this.speakOnLoad = $('.speak-on-load').first();
+
+    if (!_this.mute && _this.speakOnLoad.length) {
+      _this.loadElement(_this.speakOnLoad);
+    }
   },
 
   muteToggle: function() {
@@ -399,19 +429,16 @@ TrophyModern.Speech = {
     }
   },
 
-  loadElement: function(selector) {
+  loadElement: function($element) {
     var _this = this;
 
     speechSynthesis.cancel();
 
+    _this.speakContent = undefined;
     _this.speakContent = new SpeechSynthesisUtterance();
-    _this.speakContent.text = $(selector).text();
+    _this.speakContent.text = $element.text();
     _this.speakContent.lang = 'en-US';
     _this.speakContent.rate = 1;
-    _this.speakContent.onend = function() {
-      _this.speakContent = undefined;
-      speechSynthesis.cancel();
-    };
 
     if (!_this.mute) {
       _this.speak();
@@ -430,19 +457,128 @@ TrophyModern.Speech = {
 
   resume: function() {
     speechSynthesis.resume(this.speakContent);
-
   },
 
+};
+
+// AJAX
+TrophyModern.Ajaxy = {
+  init: function() {
+    var _this = this;
+
+    _this.$ajaxyLinks = $('a.ajax-link');
+    _this.$elementsToHide = $('.nav, #main-container');
+
+    // Find all ajaxy links and bind ajax event
+    _this.$ajaxyLinks.click( function(event) {
+      event.preventDefault();
+
+      var url = event.currentTarget.href;
+
+      _this.ajaxLoad(url);
+
+    });
+
+    // For back button
+    window.onpopstate = function() {
+      _this.ajaxLoad(document.location.origin + document.location.pathname);
+    };
+  },
+
+  reset: function() {
+    var _this = this;
+
+    // Unbind click from all ajax links
+    _this.$ajaxyLinks.unbind('click');
+
+    // Re initiate
+    _this.init();
+  },
+
+  ajaxLoad: function(url) {
+    var _this = this;
+
+    $.ajax(url, {
+      beforeSend: function() {
+        _this.ajaxBefore();
+      },
+
+      dataType: 'html',
+      error: function(jqXHR, textStatus) {
+        _this.ajaxErrorHandler(jqXHR, textStatus);
+      },
+
+      success: function(data) {
+        _this.ajaxSuccess(data, url);
+      },
+
+      complete: function() {
+        _this.ajaxAfter();
+      },
+    });
+  },
+
+  ajaxBefore: function() {
+    var _this = this;
+
+    _this.$elementsToHide.addClass('loading');
+  },
+
+  ajaxAfter: function() {
+    var _this = this;
+
+    _this.$elementsToHide.removeClass('loading');
+
+    _this.reset();
+
+    // Resets from other parts of the website
+    Layout.reset();
+    TrophyModern.Email.reset();
+    TrophyModern.Speech.afterPageload();
+    ThreeScene.reset();
+
+    if ($('.error404').length) {
+      ThreeScene.fourohfour();
+    }
+  },
+
+  ajaxErrorHandler: function(jqXHR, textStatus) {
+    alert(textStatus);
+    console.log(jqXHR);
+  },
+
+  ajaxSuccess: function(data,url) {
+
+    // Convert data into proper html to be able to fully parse thru jQuery
+    var respHtml = document.createElement('html');
+
+    respHtml.innerHTML = data;
+
+    // Get changes: body classes, page title, main content, header
+    var $bodyClasses = $('body', respHtml).attr('class');
+    var $content = $('#main-container', respHtml);
+    var $title = $('title', respHtml).text();
+
+    // Push new history state and update title
+    history.pushState(null, $title, url);
+    document.title = $title;
+
+    // Update with new content and classes
+    $('#main-container').html($content.html());
+    $('body').removeAttr('class').addClass($bodyClasses);
+
+  },
 };
 
 $(document).ready(function () {
   'use strict';
 
+  TrophyModern.Ajaxy.init();
+
   TrophyModern.Email.init();
+  TrophyModern.Speech.init();
 
   Layout.init();
-
-  TrophyModern.Speech.init();
 
   ThreeScene.init();
 

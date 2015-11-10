@@ -52,12 +52,12 @@
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
 <nav class="nav" id="top-left">
-  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('exhibition/'); ?>">
+  <a class="u-pointer conditional-nav nav-home ajax-link" href="<?php echo home_url('exhibition/'); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/globe.svg');
     ?>
   </a>
-  <a class="u-pointer conditional-nav nav-single nav-page" href="<?php echo home_url(); ?>">
+  <a class="u-pointer conditional-nav nav-single nav-page ajax-link" href="<?php echo home_url(); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/close.svg');
     ?>
@@ -96,7 +96,7 @@
       ?>
     </span>
   </nav>
-  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">
+  <a class="u-pointer conditional-nav nav-home ajax-link" href="<?php echo home_url('about'); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/query.svg');
     ?>
