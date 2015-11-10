@@ -13,7 +13,7 @@ var ThreeScene = {
     _this.scene = new THREE.Scene();
     _this.camera = new THREE.PerspectiveCamera(75, (window.innerWidth / window.innerHeight), 0.1, 8000);
     _this.raycaster = new THREE.Raycaster();
-    _this. directionVector = new THREE.Vector3();
+    _this.directionVector = new THREE.Vector3();
 
     _this.mousePosition = {
       x: 0,
@@ -46,6 +46,10 @@ var ThreeScene = {
     _this.camera.position.z = 5;
 
     _this.addSkybox();
+
+    if( WP.isAdmin == true ) {
+      _this.scene.add( new THREE.AxisHelper(40) );
+    }
 
     _this.render();
 
