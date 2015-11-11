@@ -269,9 +269,9 @@ var ThreeScene = {
         $('body').addClass('u-pointer');
 
         // Rotate hovered object
-        target.parent.rotation.x += Math.sin(new Date().getTime() * 0.001 ) * 0.0001 + 0.005;
-        target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.0002 + 0.005;
-        target.parent.rotation.z += Math.sin(new Date().getTime() * 0.002 ) * 0.0001 - 0.005;
+        target.parent.rotation.x += Math.sin(new Date().getTime() * 0.001 ) * 0.00002 + 0.002;
+        target.parent.rotation.y += Math.cos(new Date().getTime() * 0.001 ) * 0.00003 + 0.002;
+        target.parent.rotation.z += Math.sin(new Date().getTime() * 0.0002 ) * 0.00002 - 0.002;
 
         // Change hovered object opacity thruout all branches of the paternt object
         if (target.parent !== _this.lastHovered) {
