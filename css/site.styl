@@ -54,7 +54,8 @@ $color-black-soft = rgb(14, 14, 14)
 $color-white-soft = rgb(253, 253, 253)
 
 $color-red = red
-$color-gray = gray
+$color-gray = rgb(200,200,200)
+$color-light-gray = rgb(230,230,230)
 
 // TYPOGRAPHY
 
@@ -65,17 +66,17 @@ body
   letter-spacing: $font-tracking-basic
 
 h1
-  font-size: 3em
+  font-size: 1em
   line-height: $font-leading-basic
   font-weight: 600
 
 h2
-  font-size: 2em
+  font-size: 1em
   line-height: $font-leading-basic
   font-weight: 600
 
 h3
-  font-size: 1.5em
+  font-size: 1em
   line-height: $font-leading-basic
   font-weight: 600
 
@@ -196,8 +197,17 @@ html
     opacity: 0
 
   svg
-    width: auto
-    height: 40px
+    width: 30px
+    height: 30px
+    fill: $color-white-soft
+    &.logo
+      width: auto
+      height: 40px
+
+.home
+  .nav
+    svg
+      fill: $color-red
 
 #top-left
   top: 0
@@ -334,8 +344,11 @@ html
 
 input, textarea
   box-sizing: border-box
-  padding: $margin-small
+  padding: $margin-tiny $margin-small
   margin: $margin-tiny 0
+  background: $color-light-gray
+  &:focus
+    outline: 0
 
 input
   width: 49%
@@ -345,11 +358,15 @@ textarea
   width: 100%
 
 button
-  padding: $margin-tiny $margin-basic
+  padding: $margin-tiny $margin-basic 0
   margin-top: $margin-small
   background-color: $color-gray
   color: $color-white-soft
   border-radius: $margin-tiny
+
+textarea, input, button
+  &:focus
+    outline: 0
 
 
 // MEDIA QUERIES
