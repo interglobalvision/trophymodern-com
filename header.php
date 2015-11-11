@@ -74,9 +74,11 @@
 </nav>
 
 <nav class="nav" id="top-right">
-  <?php
-    echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
-  ?>
+  <a class="u-pointer ajax-link" href="<?php echo home_url(); ?>">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
+    ?>
+  </a>
 </nav>
 
 <nav class="nav" id="bottom-left">
