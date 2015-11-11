@@ -106,12 +106,27 @@ function igv_cmb_metaboxes() {
   		'default'    => '0',
   	) );
 
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Rotation Y', 'cmb2' ),
+  		'desc'       => 'Suggested values in range of -/+ 359',
+  		'id'         => $prefix . 'rotation_y',
+  		'type'       => 'text_number',
+  		'default'    => '0',
+  	) );
+
     // pages
 
 	 	$page_metabox = new_cmb2_box( array(
   		'id'            => $prefix . 'page_metabox',
   		'title'         => __( 'Page Metabox', 'cmb2' ),
   		'object_types'  => array( 'page', ), // Post type
+  	) );
+
+  	$post_metabox->add_field( array(
+  		'name'       => __( 'Audio Text', 'cmb2' ),
+  		'desc'       => __( 'Text to speak on load', 'cmb2' ),
+  		'id'         => $prefix . 'speak_on_load',
+  		'type'       => 'wysiwyg',
   	) );
 
   	$page_metabox->add_field( array(

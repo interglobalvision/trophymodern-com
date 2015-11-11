@@ -51,13 +51,22 @@
 <body <?php body_class(); ?>>
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
+<div id="loading">
+  <div id="loading-logo">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
+    ?>
+    <div id="loading-overlay"></div>
+  </div>
+</div>
+
 <nav class="nav" id="top-left">
-  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('exhibition/'); ?>">
+  <a class="u-pointer conditional-nav nav-home ajax-link" href="<?php echo home_url('exhibition/'); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/globe.svg');
     ?>
   </a>
-  <a class="u-pointer conditional-nav nav-single nav-page" href="<?php echo home_url(); ?>">
+  <a class="u-pointer conditional-nav nav-single nav-page ajax-link" href="<?php echo home_url(); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/close.svg');
     ?>
@@ -65,9 +74,11 @@
 </nav>
 
 <nav class="nav" id="top-right">
-  <?php
-    echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
-  ?>
+  <a class="u-pointer ajax-link" href="<?php echo home_url(); ?>">
+    <?php
+      echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/logo.svg');
+    ?>
+  </a>
 </nav>
 
 <nav class="nav" id="bottom-left">
@@ -85,18 +96,18 @@
 
 <nav class="nav" id="bottom-right">
   <nav class="conditional-nav nav-single">
-    <span class="swiper-prev">
+    <span class="swiper-prev u-pointer">
       <?php
         echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-left.svg');
       ?>
     </span>
-    <span class="swiper-next">
+    <span class="swiper-next u-pointer">
       <?php
         echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-right.svg');
       ?>
     </span>
   </nav>
-  <a class="u-pointer conditional-nav nav-home" href="<?php echo home_url('about'); ?>">
+  <a class="u-pointer conditional-nav nav-home ajax-link" href="<?php echo home_url('about'); ?>">
     <?php
       echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/query.svg');
     ?>

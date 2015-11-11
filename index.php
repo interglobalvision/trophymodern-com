@@ -18,14 +18,20 @@ if( have_posts() ) {
     the_post();
     $meta = get_post_meta($post->ID);
     if( $meta["_igv_obj_file"] && $meta["_igv_mtl_file"] ) {
+      $rotation_y = $meta["_igv_rotation_y"][0] ? $meta["_igv_rotation_y"][0] * (pi()/180) : 0;
       echo '
     Models.push({
       url: "' . get_permalink($post->ID) . '",
       obj: "' . $meta["_igv_obj_file"][0] . '",
       mtl: "' . $meta["_igv_mtl_file"][0] . '",
-      x: "' . $meta["_igv_pos_x"][0] . '",
-      y: "' . $meta["_igv_pos_y"][0] . '",
-      z: "' . $meta["_igv_pos_z"][0] . '",
+      position: {
+        x: ' . $meta["_igv_pos_x"][0] . ',
+        y: ' . $meta["_igv_pos_y"][0] . ',
+        z: ' . $meta["_igv_pos_z"][0] . ',
+      },
+      rotation: {
+        y: ' . $rotation_y . ',
+      },
     });';
     }
   }

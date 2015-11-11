@@ -10,8 +10,11 @@ function scripts_and_styles_method() {
 
   wp_register_script( 'myscripts', $myscripts );
 
+  $is_admin = current_user_can('administrator') ? 1 : 0;
+
   $jsVars = array(
-  	'themeUrl' => get_template_directory_uri()
+  	'themeUrl' => get_template_directory_uri(),
+  	'isAdmin' => $is_admin,
   );
 
   wp_localize_script( 'myscripts', 'WP', $jsVars );

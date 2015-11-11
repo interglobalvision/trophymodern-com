@@ -1238,7 +1238,7 @@ p a:visited:hover {
   text-decoration: none;
 }
 html {
-  background-color: #fdfdfd;
+  background-color: #0e0e0e;
   color: #0e0e0e;
 }
 .background-red {
@@ -1247,15 +1247,81 @@ html {
 .background-gray {
   background-color: #c8c8c8;
 }
+#three-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  -webkit-transition: opacity 1s;
+          transition: opacity 1s;
+}
+#three-scene.loading {
+  opacity: 0;
+}
 canvas {
   width: 100%;
   height: 100%;
+}
+#loading {
+  display: none;
+  position: fixed;
+  background: #f00;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 1;
+  -webkit-transition: opacity 1s;
+          transition: opacity 1s;
+}
+#loading.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+#loading.loaded #loading-overlay {
+  display: none;
+}
+#loading-logo {
+  height: 224px;
+  width: 224px;
+  top: 50%;
+  left: 50%;
+  margin-top: -112px;
+  margin-left: -112px;
+  position: absolute;
+}
+#loading-logo svg.logo {
+  fill: #fdfdfd;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1001;
+}
+#loading-logo #loading-overlay {
+  background: #f00;
+  width: 97%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1002;
 }
 .nav {
   position: fixed;
   box-sizing: border-box;
   padding: 32px;
   z-index: 999;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+.nav.loading {
+  opacity: 0;
 }
 .nav svg {
   width: 30px;
@@ -1276,6 +1342,8 @@ canvas {
 #top-right {
   top: 0;
   right: 0;
+  opacity: 1 !important;
+  display: block !important;
 }
 #bottom-left {
   bottom: 0;
@@ -1325,10 +1393,16 @@ canvas {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
 }
 .swiper-slide img {
   max-width: 100%;
   max-height: 100%;
+}
+#single {
+  background-color: #fdfdfd;
 }
 #single article {
   display: -webkit-box;
@@ -1373,6 +1447,14 @@ canvas {
 }
 .exhibition-header {
   margin-bottom: 1em;
+}
+#main-container {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+#main-container.loading {
+  opacity: 0;
 }
 #page {
   color: #fdfdfd;
