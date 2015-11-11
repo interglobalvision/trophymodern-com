@@ -54,12 +54,41 @@ function igv_cmb_metaboxes() {
   		'object_types'  => array( 'post', ), // Post type
   	) );
 
-  	$post_metabox->add_field( array(
-  		'name'       => __( 'Gallery', 'cmb2' ),
-  		'desc'       => __( '...', 'cmb2' ),
-  		'id'         => $prefix . 'gallery',
-  		'type'       => 'wysiwyg',
-  	) );
+    $photos_field = $post_metabox->add_field( array(
+      'id'          => $prefix . 'photos',
+      'type'        => 'group',
+      'description' => __( 'Photos', 'cmb2' ),
+      'options'     => array(
+        'group_title'   => __( 'Photo {#}', 'cmb2' ), // {#} gets replaced by row number
+        'add_button'    => __( 'Add Another Photo', 'cmb2' ),
+        'remove_button' => __( 'Remove Photo', 'cmb2' ),
+        'sortable'      => true, // beta
+      ),
+    ) );
+
+    $post_metabox->add_group_field( $photos_field, array(
+      'name' => __( 'Image', 'cmb2' ),
+      'id'   => 'image',
+      'type' => 'file',
+    ) );
+
+    $drawings_field = $post_metabox->add_field( array(
+      'id'          => $prefix . 'drawings',
+      'type'        => 'group',
+      'description' => __( 'Technical Drawings', 'cmb2' ),
+      'options'     => array(
+        'group_title'   => __( 'Drawing {#}', 'cmb2' ), // {#} gets replaced by row number
+        'add_button'    => __( 'Add Another Drawing', 'cmb2' ),
+        'remove_button' => __( 'Remove Drawing', 'cmb2' ),
+        'sortable'      => true, // beta
+      ),
+    ) );
+
+    $post_metabox->add_group_field( $drawings_field, array(
+      'name' => __( 'Image', 'cmb2' ),
+      'id'   => 'image',
+      'type' => 'file',
+    ) );
 
   	$post_metabox->add_field( array(
   		'name'       => __( 'Audio Text', 'cmb2' ),
