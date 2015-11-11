@@ -507,14 +507,28 @@ TrophyModern.Speech = {
 
     speechSynthesis.cancel();
 
+    _this.textArray = $element.text().split(". ");
+
     _this.speakContent = undefined;
     _this.speakContent = new SpeechSynthesisUtterance();
-    _this.speakContent.text = $element.text();
+    _this.speakContent.text = _this.textArray[0];
     _this.speakContent.lang = 'en-US';
     _this.speakContent.rate = 1;
 
+    _this.dialogIndex = 0;
+    _this.speakContent.onend = function(event) {
+      _this.dialogIndex++;
+      if( _this.dialogIndex < _this.textArray.length ) {
+        _this.speakContent.text = _this.textArray[_this.dialogIndex];
+        _this.speak();
+      } else {
+        _this.dialogIndex == 0;
+      }
+    }
+
     if (!_this.mute) {
       _this.speak();
+
     }
 
   },
