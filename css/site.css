@@ -1326,7 +1326,7 @@ canvas {
 .nav svg {
   width: 30px;
   height: 30px;
-  fill: #0e0e0e;
+  fill: #fdfdfd;
 }
 .nav svg.logo {
   width: auto;
@@ -1334,6 +1334,9 @@ canvas {
 }
 .home .nav svg {
   fill: #f00;
+}
+.single .nav svg {
+  fill: #0e0e0e;
 }
 #top-left {
   top: 0;
