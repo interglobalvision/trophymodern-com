@@ -1260,11 +1260,14 @@ canvas {
 .nav svg {
   width: 30px;
   height: 30px;
-  fill: #f00;
+  fill: #fdfdfd;
 }
 .nav svg.logo {
   width: auto;
   height: 40px;
+}
+.home .nav svg {
+  fill: #f00;
 }
 #top-left {
   top: 0;
