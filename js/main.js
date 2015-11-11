@@ -518,11 +518,11 @@ TrophyModern.Speech = {
     _this.dialogIndex = 0;
     _this.speakContent.onend = function(event) {
       _this.dialogIndex++;
-      if( _this.dialogIndex < _this.textArray.length ) {
+      if (_this.dialogIndex < _this.textArray.length) {
         _this.speakContent.text = _this.textArray[_this.dialogIndex];
         _this.speak();
       } else {
-        _this.dialogIndex == 0;
+        _this.dialogIndex = 0;
       }
     }
 
