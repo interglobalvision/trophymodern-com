@@ -368,7 +368,7 @@ TrophyModern.Swiper = {
     _this.singleSwiper = new Swiper('.swiper-container', {
       keyboardControl: true,
       centeredSlides: true,
-      spaceBetween: 60,
+      spaceBetween: 0,
       slidesPerView: 'auto',
       nextButton: '.swiper-next',
       prevButton: '.swiper-prev',
