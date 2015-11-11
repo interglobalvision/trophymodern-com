@@ -111,11 +111,31 @@ class IGV_Admin {
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Test Color Picker', 'IGV' ),
-			'desc'    => __( 'field description (optional)', 'IGV' ),
-			'id'      => $this->prefix . 'test_colorpicker',
-			'type'    => 'colorpicker',
-			'default' => '#bada55',
+			'name' => __( 'Email sending server [smtp]', 'IGV' ),
+			'desc' => __( 'Used with email account to send the mail from the inquiry form', 'IGV' ),
+			'id'   => $this->prefix . 'email_server',
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Email sending account', 'IGV' ),
+			'desc' => __( 'The email account used to send the mail from the inquiry form', 'IGV' ),
+			'id'   => $this->prefix . 'email_account',
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Email sending account password', 'IGV' ),
+			'desc' => __( 'The password for the email account used to send the mail from the inquiry form', 'IGV' ),
+			'id'   => $this->prefix . 'email_password',
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Inqiry form delivery address', 'IGV' ),
+			'desc' => __( 'The address the inquiry form sends inquiries to', 'IGV' ),
+			'id'   => $this->prefix . 'email_delivery',
+			'type' => 'text',
 		) );
 
 	}
