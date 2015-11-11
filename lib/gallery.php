@@ -122,7 +122,7 @@ if ( $captiontag && trim($attachment->post_excerpt) ) {
 
 
     $output .= "
-      <div class='swiper-slide' data-hash='{$id}'>
+      <div class='swiper-slide u-pointer' data-hash='{$id}'>
         <img src='{$img[0]}'>{$tag}
       </div>
 ";

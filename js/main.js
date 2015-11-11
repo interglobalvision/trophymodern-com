@@ -358,17 +358,37 @@ var ThreeScene = {
 };
 
 var TrophyModern = {
-  init: function() {
-      var mySwiper = new Swiper('.swiper-container', {
-        keyboardControl: true,
-        centeredSlides: true,
-        spaceBetween: 60,
-        slidesPerView: 'auto',
-        nextButton: '.swiper-next',
-        prevButton: '.swiper-prev',
-      });
-  },
+};
 
+TrophyModern.Swiper = {
+  singleSwiper: undefined,
+  init: function() {
+    var _this = this;
+
+    _this.singleSwiper = new Swiper('.swiper-container', {
+      keyboardControl: true,
+      centeredSlides: true,
+      spaceBetween: 60,
+      slidesPerView: 'auto',
+      nextButton: '.swiper-next',
+      prevButton: '.swiper-prev',
+      onInit: function() {
+         $('.swiper-slide').css('opacity', 1);
+      }
+    });
+
+    $('.swiper-slide').on({
+      click: function() {
+
+        if ($(this).index() === ($('.swiper-slide').length - 1)) {
+          _this.singleSwiper.slideTo(0);
+        } else {
+          _this.singleSwiper.slideNext();
+        }
+
+      },
+    });
+  },
 };
 
 var Layout = {
@@ -637,7 +657,7 @@ TrophyModern.Ajaxy = {
     _this.reset();
 
     // Resets from other parts of the website
-    TrophyModern.init();
+    TrophyModern.Swiper.init();
     Layout.reset();
     TrophyModern.Email.reset();
     TrophyModern.Speech.afterPageload();
@@ -679,7 +699,7 @@ TrophyModern.Ajaxy = {
 $(document).ready(function () {
   'use strict';
 
-  TrophyModern.init();
+  TrophyModern.Swiper.init();
   TrophyModern.Ajaxy.init();
   TrophyModern.Email.init();
   TrophyModern.Speech.init();

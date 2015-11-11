@@ -250,6 +250,8 @@ html
   display: flex
   justify-content: space-between
   align-items: center
+  opacity: 0
+  transition: opacity $animation-speed-basic
   img
     max-width: 100%
     max-height: 100%
@@ -257,12 +259,14 @@ html
 
 // SINGLE
 
-#single article
-  display: flex
-  justify-content: space-around
-  align-items: center
-  flex-direction: column
-  height: 100vh
+#single
+  background-color: $color-white-soft
+  article
+    display: flex
+    justify-content: space-around
+    align-items: center
+    flex-direction: column
+    height: 100vh
 
 #single-title
   position: fixed
