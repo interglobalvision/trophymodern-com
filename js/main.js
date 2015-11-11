@@ -372,6 +372,7 @@ TrophyModern.Swiper = {
       slidesPerView: 'auto',
       nextButton: '.swiper-next',
       prevButton: '.swiper-prev',
+      loop: true,
       onInit: function() {
          $('.swiper-slide').css('opacity', 1);
       }
