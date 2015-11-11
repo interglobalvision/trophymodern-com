@@ -43,12 +43,10 @@ var ThreeScene = {
     _this.$container.append(_this.renderer.domElement);
 
     var ambient = new THREE.AmbientLight(0x444444);
-    var directionalLight = new THREE.DirectionalLight(0xffeedd);
-
-    directionalLight.position.set(0, 0, 1).normalize();
+    var hemi = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
 
     _this.scene.add(ambient);
-    _this.scene.add(directionalLight);
+    _this.scene.add(hemi);
 
     _this.camera.position.z = 5;
     _this.focalLength = 15;
