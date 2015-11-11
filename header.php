@@ -94,12 +94,12 @@
 
 <nav class="nav" id="bottom-right">
   <nav class="conditional-nav nav-single">
-    <span class="swiper-prev">
+    <span class="swiper-prev u-pointer">
       <?php
         echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-left.svg');
       ?>
     </span>
-    <span class="swiper-next">
+    <span class="swiper-next u-pointer">
       <?php
         echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/icons/arrow-right.svg');
       ?>
