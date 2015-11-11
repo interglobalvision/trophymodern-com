@@ -51,6 +51,8 @@ var ThreeScene = {
     _this.scene.add(directionalLight);
 
     _this.camera.position.z = 5;
+    _this.focalLength = 15;
+    _this.camera.setLens(_this.focalLength);
 
     _this.addSkybox();
 
@@ -74,6 +76,20 @@ var ThreeScene = {
     _this.$container.mousemove(function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
+    });
+
+    _this.$container.mousewheel(function (e, delta, deltaX, deltaY) {
+      e.preventDefault();
+
+      _this.focalLength += (deltaY / 75);
+
+      if (_this.focalLength < 5) {
+        _this.focalLength = 5;
+      } else if (_this.focalLength > 150) {
+        _this.focalLength = 150;
+      }
+
+      _this.camera.setLens(_this.focalLength);
     });
 
     window.addEventListener('resize', _this.resize.bind(_this), false);
