@@ -49,6 +49,8 @@ var ThreeScene = {
     _this.scene.add(hemi);
 
     _this.camera.position.z = 5;
+    _this.focalLength = 15;
+    _this.camera.setLens(_this.focalLength);
 
     _this.addSkybox();
 
@@ -72,6 +74,20 @@ var ThreeScene = {
     _this.$container.mousemove(function(event) {
       _this.mousePosition.x = event.clientX;
       _this.mousePosition.y = event.clientY;
+    });
+
+    _this.$container.mousewheel(function (e, delta, deltaX, deltaY) {
+      e.preventDefault();
+
+      _this.focalLength += (deltaY / 75);
+
+      if (_this.focalLength < 5) {
+        _this.focalLength = 5;
+      } else if (_this.focalLength > 150) {
+        _this.focalLength = 150;
+      }
+
+      _this.camera.setLens(_this.focalLength);
     });
 
     window.addEventListener('resize', _this.resize.bind(_this), false);
@@ -505,14 +521,28 @@ TrophyModern.Speech = {
 
     speechSynthesis.cancel();
 
+    _this.textArray = $element.text().split(". ");
+
     _this.speakContent = undefined;
     _this.speakContent = new SpeechSynthesisUtterance();
-    _this.speakContent.text = $element.text();
+    _this.speakContent.text = _this.textArray[0];
     _this.speakContent.lang = 'en-US';
     _this.speakContent.rate = 1;
 
+    _this.dialogIndex = 0;
+    _this.speakContent.onend = function(event) {
+      _this.dialogIndex++;
+      if (_this.dialogIndex < _this.textArray.length) {
+        _this.speakContent.text = _this.textArray[_this.dialogIndex];
+        _this.speak();
+      } else {
+        _this.dialogIndex = 0;
+      }
+    }
+
     if (!_this.mute) {
       _this.speak();
+
     }
 
   },
