@@ -106,6 +106,7 @@ oMmyso+/yMy..```   oMM/       .mMd+MMo       `hMN.    ``..-/MN+osydNMo
     ?>
     <div id="loading-overlay"></div>
   </div>
+  <div id="loading-percent"></div>
 </div>
 
 <nav class="nav" id="top-left">

@@ -1322,6 +1322,13 @@ body.loading .nav svg {
   position: absolute;
   z-index: 1002;
 }
+#loading-percent {
+  width: 100%;
+  position: absolute;
+  bottom: 32px;
+  text-align: center;
+  color: #fdfdfd;
+}
 .nav {
   position: fixed;
   box-sizing: border-box;
