@@ -1407,7 +1407,7 @@ canvas {
 }
 .swiper-slide img {
   max-width: 100%;
-  height: 80vh;
+  max-height: 80vh;
   margin: 0 auto;
 }
 .swiper-slide.drawing {
