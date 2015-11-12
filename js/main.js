@@ -13,7 +13,6 @@ var ThreeScene = {
 
     if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
       $('body').addClass('loading');
-      $('#loading').show();
     }
 
     _this.$container = $('#three-scene');
