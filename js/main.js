@@ -654,9 +654,10 @@ TrophyModern.Ajaxy = {
     if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
       $('#loading').show();
       $('body').addClass('loading');
+    } else {
+      $('body').removeClass('loading');
     }
 
-    $('body').removeClass('loading');
 
     _this.reset();
 
