@@ -1335,6 +1335,8 @@ body.loading .nav svg {
   width: 30px;
   height: 30px;
   fill: #fdfdfd;
+  -webkit-transition: fill 0.3s;
+          transition: fill 0.3s;
 }
 .nav svg.logo {
   width: auto;
@@ -1415,6 +1417,8 @@ body.loading .nav svg {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
   background-color: #fdfdfd;
+  box-sizing: border-box;
+  padding: 80px;
 }
 .swiper-slide img {
   max-width: 100%;
@@ -1457,6 +1461,7 @@ body.loading .nav svg {
 }
 #exhibitions {
   background-color: #c8c8c8;
+  min-height: 100vh;
 }
 #exhibitions img {
   max-width: 100%;
@@ -1553,24 +1558,107 @@ button:focus {
     float: none;
     width: 100%;
     padding-right: 0px;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
+  }
+  #loading-logo {
+    height: 196px;
+    width: 196px;
+    margin-top: -98px;
+    margin-left: -98px;
+  }
+  .nav {
+    padding: 28px;
   }
   .nav svg {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 26px;
   }
-  #logo {
-    width: 95px;
-    height: 35px;
+  .nav svg.logo {
+    height: 26px;
+  }
+  #single-title {
+    padding: 28px 98px;
+  }
+  .swiper-slide {
+    padding: 70px;
+  }
+  .exhibition {
+    padding: 98px;
+  }
+  #page-copy {
+    padding: 98px;
+  }
+  #page-footer {
+    margin: 28px 0;
+  }
+  #form-inquiries {
+    padding: 14px;
+    margin: 70px auto;
+  }
+  #form-inquiries-output {
+    padding: 28px 0;
+  }
+  input {
+    width: 100%;
+  }
+  input,
+  textarea {
+    padding: 7px 14px;
+    margin: 7px 0;
+  }
+  button {
+    padding: 7px 28px 0;
+    margin-top: 14px;
+    border-radius: 7px;
   }
 }
 @media screen and (max-width: 450px) {
-  .nav svg {
-    width: 30px;
-    height: 30px;
+  #loading-logo {
+    height: 140px;
+    width: 140px;
+    margin-top: -70px;
+    margin-left: -70px;
   }
-  #logo {
-    width: 82px;
-    height: 30px;
+  .nav {
+    padding: 20px;
+  }
+  .nav svg {
+    width: 20px;
+    height: 20px;
+  }
+  .nav svg.logo {
+    height: 20px;
+  }
+  #single-title {
+    padding: 20px 70px;
+  }
+  .swiper-slide {
+    padding: 50px;
+  }
+  .exhibition {
+    padding: 70px 50px;
+  }
+  #page-copy {
+    padding: 70px 50px;
+  }
+  #page-footer {
+    margin: 20px 0;
+  }
+  #form-inquiries {
+    padding: 10px;
+    margin: 50px auto;
+  }
+  #form-inquiries-output {
+    padding: 20px 0;
+  }
+  input,
+  textarea {
+    padding: 5px 10px;
+    margin: 5px 0;
+  }
+  button {
+    padding: 5px 20px 0;
+    margin-top: 10px;
+    border-radius: 5px;
   }
 }

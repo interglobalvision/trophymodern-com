@@ -50,7 +50,7 @@ if( have_posts() ) {
   }
 } else {
 ?>
-    <article class="u-alert"><?php _e('Sorry, no posts matched your criteria :{'); ?></article>
+    <article class="exhibition"><?php _e('Sorry, no posts found :('); ?></article>
 <?php
 } ?>
 
