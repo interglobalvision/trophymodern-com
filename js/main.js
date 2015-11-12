@@ -549,7 +549,7 @@ TrophyModern.Speech = {
     _this.speakContent = new SpeechSynthesisUtterance();
     _this.speakContent.text = _this.textArray[0];
     _this.speakContent.lang = 'en-US';
-    _this.speakContent.rate = 1;
+    _this.speakContent.rate = 0.9;
 
     _this.dialogIndex = 0;
     _this.speakContent.onend = function(event) {
