@@ -12,8 +12,8 @@ var ThreeScene = {
     var _this = this;
 
     if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
-      $('#loading').show();
       $('body').addClass('loading');
+      $('#loading').show();
     }
 
     _this.$container = $('#three-scene');
@@ -645,19 +645,23 @@ TrophyModern.Ajaxy = {
   ajaxBefore: function() {
     var _this = this;
 
+    if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
+      $('#loading').show();
+    }
     $('body').addClass('loading');
   },
 
   ajaxAfter: function() {
     var _this = this;
 
-    if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
-      $('#loading').show();
-      $('body').addClass('loading');
-    } else {
+
+    if( $('body.home').length ) {
+      if (ThreeScene.percentLoaded !== 0) {
+        $('body').removeClass('loading');
+      }
+    } else { 
       $('body').removeClass('loading');
     }
-
 
     _this.reset();
 
@@ -696,7 +700,7 @@ TrophyModern.Ajaxy = {
 
     // Update with new content and classes
     $('#main-container').html($content.html());
-    $('body').removeAttr('class').addClass($bodyClasses);
+    $('body').removeAttr('class').addClass($bodyClasses + ' loading');
 
   },
 };
