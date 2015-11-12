@@ -141,6 +141,8 @@ var ThreeScene = {
 
         console.log('Files percent loaded', _this.percentLoaded);
 
+        $('#loading-percent').html(_this.percentLoaded + '%');
+
         if (_this.percentLoaded === 100) {
           $('#loading').addClass('loaded');
           $('body').removeClass('loading');
