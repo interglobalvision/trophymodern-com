@@ -1254,8 +1254,8 @@ html {
   bottom: 0;
   right: 0;
   z-index: -1;
-  -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
 }
 #three-scene.loading {
   opacity: 0;
@@ -1282,8 +1282,8 @@ body.loading .nav svg {
   left: 0;
   z-index: 1000;
   opacity: 1;
-  -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
 }
 #loading.loaded {
   opacity: 0;
@@ -1347,6 +1347,9 @@ body.loading .nav svg {
 }
 .single .nav svg {
   fill: #0e0e0e;
+}
+.single #three-scene {
+  opacity: 0;
 }
 #top-left {
   top: 0;

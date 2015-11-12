@@ -156,7 +156,7 @@ body.loading
   left: 0
   z-index: 1000
   opacity: 1
-  transition: opacity 1s
+  transition: opacity $animation-speed-basic
   &.loaded
     opacity: 0
     pointer-events: none
@@ -221,6 +221,9 @@ body.loading
   .nav
     svg
       fill: $color-black-soft
+
+.single #three-scene
+  opacity: 0        
 
 #top-left
   top: 0
