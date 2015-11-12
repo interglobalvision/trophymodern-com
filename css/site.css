@@ -1346,7 +1346,7 @@ body.loading .nav svg {
           transition: fill 0.3s;
 }
 .nav svg.logo {
-  width: auto;
+  width: 108.433px;
   height: 40px;
 }
 .home .nav svg {
@@ -1599,6 +1599,7 @@ button:focus {
   }
   .nav svg.logo {
     height: 26px;
+    width: 70.481px;
   }
   #single-title {
     padding: 28px 98px;
@@ -1652,6 +1653,7 @@ button:focus {
   }
   .nav svg.logo {
     height: 20px;
+    width: 54.216px;
   }
   #single-title {
     padding: 20px 70px;
