@@ -349,6 +349,9 @@ body.loading
 .exhibition
   box-sizing: border-box
   padding: $margin-larger
+  .into-2 p
+    font-size: ( $font-size-basic * 0.8 )
+    line-height: $font-leading-basic
 
 .exhibition-header
   margin-bottom: 1em
@@ -427,6 +430,10 @@ textarea, input, button
     font-family: 'UniversLTStd', helvetica, arial, sans-serif
     font-size: $font-size-basic
     line-height: $font-leading-basic
+    
+  .exhibition .into-2 p
+    font-size: ( $font-size-basic * 0.8 )
+    line-height: $font-leading-basic
 
 @media screen and (max-width: 800px)
 
@@ -437,6 +444,10 @@ textarea, input, button
   body
     font-family: 'UniversLTStd', helvetica, arial, sans-serif
     font-size: $font-size-basic
+    line-height: $font-leading-basic
+    
+  .exhibition .into-2 p
+    font-size: ( $font-size-basic * 0.8 )
     line-height: $font-leading-basic
 
 @media screen and (max-width: 600px)
@@ -479,10 +490,12 @@ textarea, input, button
   .swiper-slide
     padding: $margin-large
 
+
   // EXHIBITIONS
 
   .exhibition
     padding: $margin-larger
+
 
   // CONTENT LAYOUTS
   #page-copy

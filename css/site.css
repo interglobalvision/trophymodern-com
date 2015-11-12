@@ -1479,6 +1479,10 @@ body.loading .nav svg {
   box-sizing: border-box;
   padding: 112px;
 }
+.exhibition .into-2 p {
+  font-size: 22.400000000000002px;
+  line-height: 1.35em;
+}
 .exhibition-header {
   margin-bottom: 1em;
 }
@@ -1550,11 +1554,19 @@ button:focus {
     font-size: 22px;
     line-height: 1.35em;
   }
+  .exhibition .into-2 p {
+    font-size: 17.6px;
+    line-height: 1.35em;
+  }
 }
 @media screen and (max-width: 800px) {
   body {
     font-family: 'UniversLTStd', helvetica, arial, sans-serif;
     font-size: 19px;
+    line-height: 1.35em;
+  }
+  .exhibition .into-2 p {
+    font-size: 15.200000000000001px;
     line-height: 1.35em;
   }
 }
