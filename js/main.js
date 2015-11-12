@@ -644,7 +644,7 @@ TrophyModern.Ajaxy = {
   ajaxBefore: function() {
     var _this = this;
 
-    if (ThreeScene.percentLoaded === 0 && $('body.home').length) {
+    if (ThreeScene.percentLoaded === 0) {
       $('#loading').show();
     }
     $('body').addClass('loading');
