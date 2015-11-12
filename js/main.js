@@ -141,7 +141,7 @@ var ThreeScene = {
 
         console.log('Files percent loaded', _this.percentLoaded);
 
-        $('#loading-percent').html(_this.percentLoaded + '%');
+        $('#loading-percent').html(Math.round(_this.percentLoaded) + '%');
 
         if (_this.percentLoaded === 100) {
           $('#loading').addClass('loaded');
@@ -660,7 +660,7 @@ TrophyModern.Ajaxy = {
       if (ThreeScene.percentLoaded !== 0) {
         $('body').removeClass('loading');
       }
-    } else { 
+    } else {
       $('body').removeClass('loading');
     }
 
