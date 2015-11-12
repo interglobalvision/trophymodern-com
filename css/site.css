@@ -1194,7 +1194,7 @@ h3 {
   font-weight: 600;
 }
 p {
-  margin: 0 auto 1em auto;
+  margin: 0 0 1em 0;
   max-width: 1000px;
   font-weight: 400;
 }
@@ -1348,7 +1348,9 @@ body.loading .nav svg {
 .single .nav svg {
   fill: #0e0e0e;
 }
-.single #three-scene {
+.single #three-scene,
+.page #three-scene,
+.archive #three-scene {
   opacity: 0;
 }
 #top-left {

@@ -81,7 +81,7 @@ h3
   font-weight: 600
 
 p
-  margin: 0 auto 1em auto
+  margin: 0 0 1em 0
   max-width: 1000px
   font-weight: 400
   strong
@@ -135,16 +135,31 @@ html
 
 
 // Three.js
-@import "three"
+
+#three-scene
+  position: absolute
+  top: 0
+  left: 0
+  bottom:0
+  right: 0
+  z-index: -1
+  transition: opacity $animation-speed-basic
+  &.loading
+    opacity: 0
+
+canvas
+  width: 100%
+  height: 100%
+
 
 // LOADING
+
 body.loading
   .nav, #main-container, #three-scene
     opacity: 0
-  .nav svg
-    fill: $color-black-soft
-
-
+  .nav
+    svg
+      fill: $color-black-soft
 
 #loading
   display: none
@@ -163,8 +178,9 @@ body.loading
     #loading-overlay
       display: none
 
-.home #loading
-  display: block
+.home
+  #loading
+    display: block
 
 #loading-logo
   height: $margin-larger * 2
@@ -190,7 +206,6 @@ body.loading
     top: 0
     position: absolute
     z-index: 1002
-
 
 
 // NAV
@@ -222,8 +237,9 @@ body.loading
     svg
       fill: $color-black-soft
 
-.single #three-scene
-  opacity: 0        
+.single, .page, .archive
+  #three-scene
+    opacity: 0
 
 #top-left
   top: 0
@@ -249,11 +265,13 @@ body.loading
 .conditional-nav
   display: none
 
-.home .conditional-nav.nav-home
-  display: block
+.home
+  .conditional-nav.nav-home
+    display: block
 
-.single .conditional-nav.nav-single
-  display: block
+.single
+  .conditional-nav.nav-single
+    display: block
 
 .page .conditional-nav.nav-page, .post-type-archive-exhibition .conditional-nav.nav-page
   display: block
@@ -264,14 +282,14 @@ body.loading
 
 // SLIDESHOWS
 
-.single .gallery
-  height: 100%
-  width: 100%
-
-.single .gallery nav
-  position: absolute
-  bottom: 0
-  right: 0
+.single
+  .gallery
+    height: 100%
+    width: 100%
+    nav
+      position: absolute
+      bottom: 0
+      right: 0
 
 .swiper-slide
   text-align: center
@@ -335,6 +353,7 @@ body.loading
 
 
 // CONTENT LAYOUTS
+
 #main-container
   opacity: 1
   transition: opacity $animation-speed-basic
