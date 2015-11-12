@@ -156,4 +156,16 @@ function pr($var) {
   echo '</pre>';
 }
 
+// order exhibitions by metabox date 
+
+function order_exhibitions_by_date( $query ) {
+    if ( $query->is_main_query() && is_post_type_archive('exhibition')) {
+        $query->set( 'meta_key', '_igv_opening_date' );
+        $query->set( 'orderby', 'meta_value_num' );
+        $query->set( 'order', 'DESC' );
+    }
+}
+
+add_action( 'pre_get_posts', 'order_exhibitions_by_date' );
+
 ?>
