@@ -207,6 +207,7 @@ body.loading
     width: 30px
     height: 30px
     fill: $color-white-soft
+    transition: fill $animation-speed-basic
     &.logo
       width: auto
       height: 40px
@@ -279,6 +280,8 @@ body.loading
   opacity: 0
   transition: opacity $animation-speed-basic
   background-color: $color-white-soft
+  box-sizing: border-box
+  padding: $margin-large
   img
     max-width: 100%
     max-height: 80vh
@@ -414,33 +417,139 @@ textarea, input, button
 
 @media screen and (max-width: 600px)
 
+  $gutter = 14px
+  $margin-small = ($gutter)
+  $margin-tiny = ($gutter / 2)
+  $margin-basic = ($gutter * 2)
+  $margin-large = ($gutter * 5)
+  $margin-larger = ($gutter * 7)
+
   .percent-col
     float: none
     width: 100%
     padding-right: 0px
     padding-bottom: $margin-small
 
+  #loading-logo
+    height: $margin-larger * 2
+    width: $margin-larger * 2
+    margin-top: -($margin-larger)
+    margin-left: -($margin-larger)
+
   // NAV
 
   .nav
+    padding: $margin-basic
     svg
-      width: 35px
-      height: 35px
+      width: 25px
+      height: 26px
+      &.logo
+        height: 26px
 
-  #logo
-    width: 95px
-    height: 35px
+
+  // SINGLE
+
+  #single-title
+    padding: $margin-basic $margin-larger
+
+  .swiper-slide
+    padding: $margin-large
+
+  // EXHIBITIONS
+
+  .exhibition
+    padding: $margin-larger
+
+  // CONTENT LAYOUTS
+  #page-copy
+    padding: $margin-larger
+
+  #page-footer
+    margin: $margin-basic 0
+
+
+  // FORM
+
+  #form-inquiries
+    padding: $margin-small
+    margin: $margin-large auto
+
+  #form-inquiries-output
+    padding: $margin-basic 0
+
+  input
+    width: 100%
+
+  input, textarea
+    padding: $margin-tiny $margin-small
+    margin: $margin-tiny 0
+
+  button
+    padding: $margin-tiny $margin-basic 0
+    margin-top: $margin-small
+    border-radius: $margin-tiny
 
 
 @media screen and (max-width: 450px)
 
+  $gutter = 10px
+  $margin-small = ($gutter)
+  $margin-tiny = ($gutter / 2)
+  $margin-basic = ($gutter * 2)
+  $margin-large = ($gutter * 5)
+  $margin-larger = ($gutter * 7)
+
+  #loading-logo
+    height: $margin-larger * 2
+    width: $margin-larger * 2
+    margin-top: -($margin-larger)
+    margin-left: -($margin-larger)
+
   // NAV
 
   .nav
+    padding: $margin-basic
     svg
-      width: 30px
-      height: 30px
+      width: 20px
+      height: 20px
+      &.logo
+        height: 20px
 
-  #logo
-    width: 82px
-    height: 30px
+  // SINGLE
+
+  #single-title
+    padding: $margin-basic $margin-larger
+
+  .swiper-slide
+    padding: $margin-large
+
+  // EXHIBITIONS
+
+  .exhibition
+    padding: $margin-larger $margin-large
+
+  // CONTENT LAYOUTS
+  #page-copy
+    padding: $margin-larger $margin-large
+
+  #page-footer
+    margin: $margin-basic 0
+
+
+  // FORM
+
+  #form-inquiries
+    padding: $margin-small
+    margin: $margin-large auto
+
+  #form-inquiries-output
+    padding: $margin-basic 0
+
+  input, textarea
+    padding: $margin-tiny $margin-small
+    margin: $margin-tiny 0
+
+  button
+    padding: $margin-tiny $margin-basic 0
+    margin-top: $margin-small
+    border-radius: $margin-tiny
