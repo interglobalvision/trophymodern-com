@@ -9,6 +9,7 @@
       echo isset($_GET['callback'])
         ? "{$_GET['callback']}($json)"
         : $json;
+      exit();
 
     }
   }
@@ -21,14 +22,42 @@
     echo isset($_GET['callback'])
       ? "{$_GET['callback']}($json)"
       : $json;
+    exit();
 
   };
 
 // get secure details from php kept out of git
-  require('../secure.php');
+  require('../../../../wp-load.php');
+
+  $mail_server = IGV_get_option('_igv_email_server');
+  $mail_username = IGV_get_option('_igv_email_account');
+  $mail_password = IGV_get_option('_igv_email_password');
+  $mail_delivery = IGV_get_option('_igv_email_delivery');
+
+  if (empty($mail_server) || empty($mail_username) || empty($mail_password) || empty($mail_delivery)) {
+
+    header('content-type: application/json; charset=utf-8');
+    $json = json_encode(array('code' => 11));
+    echo isset($_GET['callback'])
+      ? "{$_GET['callback']}($json)"
+      : $json;
+    exit();
+
+  }
+
+  if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['message'])) {
+
+    header('content-type: application/json; charset=utf-8');
+    $json = json_encode(array('code' => 666));
+    echo isset($_GET['callback'])
+      ? "{$_GET['callback']}($json)"
+      : $json;
+    exit();
+
+  }
 
 // load mailer lib
-  require 'PHPMailerAutoload.php';
+  require('PHPMailer/PHPMailerAutoload.php');
 
 // set values from _POST
   if (!empty($_POST['name'])) {
@@ -53,7 +82,7 @@
   $mail->Port = 587;                                    // TCP port to connect to
 
   $mail->setFrom($email, $name);
-  $mail->addAddress('patrick@interglobal.vision', 'Trophy Modern Webform');     // Add a recipient
+  $mail->addAddress($mail_delivery, 'Trophy Modern Webform');     // Add a recipient
   $mail->addReplyTo($email, $name);
 
   $mail->isHTML(true);                                  // Set email format to HTML
