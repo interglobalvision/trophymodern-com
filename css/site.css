@@ -1454,6 +1454,7 @@ body.loading .nav svg {
 }
 #exhibitions {
   background-color: #c8c8c8;
+  min-height: 100vh;
 }
 #exhibitions img {
   max-width: 100%;
