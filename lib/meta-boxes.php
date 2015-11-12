@@ -143,6 +143,21 @@ function igv_cmb_metaboxes() {
   		'default'    => '0',
   	) );
 
+    // exhibitions
+
+    $exhibition_metabox = new_cmb2_box( array(
+      'id'            => $prefix . 'exhibition_metabox',
+      'title'         => __( 'Exhibition Metabox', 'cmb2' ),
+      'object_types'  => array( 'exhibition', ), // Post type
+    ) );
+
+    $exhibition_metabox->add_field( array(
+      'name' => __( 'Date of the Opening', 'cmb2' ),
+      'desc' => __( '', 'cmb2' ),
+      'id'   => $prefix . 'opening_date',
+      'type' => 'text_date_timestamp',
+    ) );
+
     // pages
 
 	 	$page_metabox = new_cmb2_box( array(
