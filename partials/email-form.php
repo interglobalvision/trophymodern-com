@@ -1,10 +1,3 @@
-<?php
-  $mail_server = IGV_get_option('_igv_email_server');
-  $mail_username = IGV_get_option('_igv_email_account');
-  $mail_password = IGV_get_option('_igv_email_password');
-  $mail_delivery = IGV_get_option('_igv_email_delivery');
-?>
-
 <form id="form-inquiries" class="font-color-black" method="post" action="<?php bloginfo('stylesheet_directory'); ?>/lib/igv-send-mail.php">
   <input type="hidden" name="hidden" value="M3vd26fg8e804ay">
 
