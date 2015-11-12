@@ -1238,7 +1238,7 @@ p a:visited:hover {
   text-decoration: none;
 }
 html {
-  background-color: #0e0e0e;
+  background-color: #fdfdfd;
   color: #0e0e0e;
 }
 .background-red {
@@ -1263,6 +1263,14 @@ html {
 canvas {
   width: 100%;
   height: 100%;
+}
+body.loading .nav,
+body.loading #main-container,
+body.loading #three-scene {
+  opacity: 0;
+}
+body.loading .nav svg {
+  fill: #0e0e0e;
 }
 #loading {
   display: none;
@@ -1323,9 +1331,6 @@ canvas {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
 }
-.nav.loading {
-  opacity: 0;
-}
 .nav svg {
   width: 30px;
   height: 30px;
@@ -1354,6 +1359,9 @@ canvas {
 #bottom-left {
   bottom: 0;
   left: 0;
+  opacity: 1 !important;
+  display: block !important;
+  z-index: 9999;
 }
 #bottom-right {
   bottom: 0;
@@ -1465,9 +1473,6 @@ canvas {
   opacity: 1;
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
-}
-#main-container.loading {
-  opacity: 0;
 }
 #page {
   color: #fdfdfd;
