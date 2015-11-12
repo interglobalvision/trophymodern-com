@@ -1238,11 +1238,8 @@ p a:visited:hover {
   text-decoration: none;
 }
 html {
-  background-color: #0e0e0e;
+  background-color: #fdfdfd;
   color: #0e0e0e;
-}
-body {
-  background: #fdfdfd;
 }
 .background-red {
   background-color: #f00;
