@@ -13,9 +13,9 @@ get_header();
 if( have_posts() ) {
   while( have_posts() ) {
     the_post();
-      $meta = get_post_meta($post->ID);
-      $photos = get_post_meta($post->ID, '_igv_photos');
-      $drawings = get_post_meta($post->ID, '_igv_drawings');
+    $meta = get_post_meta($post->ID);
+    $photos = get_post_meta($post->ID, '_igv_photos');
+    $drawings = get_post_meta($post->ID, '_igv_drawings');
 ?>
 
     <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -24,29 +24,33 @@ if( have_posts() ) {
 
       <?php // the_content(); ?>
 
+    <?php  if (! empty($photos[0]) || !empty($drawings[0]) ){ ?>
       <div class='gallery swiper-container'>
         <div class='swiper-wrapper'>
-        <?php  if (! empty($photos[0])) { pr($photos[0]);
-                foreach ($photos[0] as $photo) {  ?>
+      <?php  if (! empty($photos[0])) { ?>
+        <?php foreach ($photos[0] as $photo) { ?>
           <div class='swiper-slide u-pointer' data-hash='<?php echo $photo['image_id']; ?>'>
             <img src='<?php echo $photo['image']; ?>'>
           </div>
-        <?php   } 
-              }
-              if (! empty($drawings[0])) { pr($drawings[0]);
-                foreach ($drawings[0] as $drawing) {  ?>
+        <?php
+        } 
+      }
+      if (! empty($drawings[0])) {
+        foreach ($drawings[0] as $drawing) {  ?>
           <div class='swiper-slide u-pointer drawing' data-hash='<?php echo $drawing['image_id']; ?>'>
             <img src='<?php echo $drawing['image']; ?>'>
           </div>
-        <?php   } 
-              }
-        ?>
-        </div>
+        <?php
+        } 
+      }
+    }
+    ?>
       </div>
+    </div>
 
-      <?php if (!empty($meta['_igv_speak_on_load'][0])) {
-        echo '<div class="speak-on-load u-hidden">' . $meta['_igv_speak_on_load'][0] . '</div>';
-      } ?>
+  <?php if (!empty($meta['_igv_speak_on_load'][0])) {
+    echo '<div class="speak-on-load u-hidden">' . $meta['_igv_speak_on_load'][0] . '</div>';
+  } ?>
 
     </article>
 
