@@ -57,10 +57,10 @@ oMmyso+/yMy..```   oMM/       .mMd+MMo       `hMN.    ``..-/MN+osydNMo
   <?php get_template_part('partials/seo'); ?>
 
   <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
-  <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.png">
+  <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.gif">
   <link rel="shortcut" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.ico">
-  <link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon-touch.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.png">
+  <link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.gif">
+  <link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.gif">
 
 
   <script src="<?php bloginfo('stylesheet_directory'); ?>/js/vendor/modernizr.js"></script>
