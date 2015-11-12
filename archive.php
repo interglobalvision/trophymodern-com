@@ -13,12 +13,13 @@ if( have_posts() ) {
   while( have_posts() ) {
     the_post();
     $meta = get_post_meta($post->ID);
+    $monthYear = date("F Y", $meta['_igv_opening_date'][0]);
 ?>
 
     <article <?php post_class(); ?>>
       <header class="exhibition-header u-cf">
         <div class="percent-col into-2 pcol-padding-right">
-          <h4><?php the_time('F Y'); ?></h4>
+          <h4><?php echo $monthYear; ?></h4>
         </div>
         <div class="percent-col into-2">
           <h4 class="exhibition-title"><?php the_title(); ?></h4>
