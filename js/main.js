@@ -501,7 +501,6 @@ TrophyModern.Email = {
 
 TrophyModern.Speech = {
   mute: false,
-  speechSupported: false,
   speakContent: undefined,
   speakOnLoad: undefined,
   speechSupported: false,
@@ -528,7 +527,7 @@ TrophyModern.Speech = {
   afterPageload: function() {
     var _this = this;
 
-    if( _this.speechSupported ) {
+    if ( _this.speechSupported ) {
       _this.speakOnLoad = $('.speak-on-load').first();
 
       if (!_this.mute && _this.speakOnLoad.length) {
