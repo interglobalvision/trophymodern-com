@@ -503,26 +503,36 @@ TrophyModern.Speech = {
   mute: false,
   speakContent: undefined,
   speakOnLoad: undefined,
+  speechSupported: false,
   init: function() {
     var _this = this;
 
-    $('.nav-mute-toggle').on({
-      click: function() {
-        _this.muteToggle();
-      },
-    });
+    // Feature detection
+    if ('speechSynthesis' in window) {
 
-    _this.afterPageload();
+      _this.speechSupported = true;
+      $('.nav-mute-toggle').on({
+        click: function() {
+          _this.muteToggle();
+        },
+      });
+
+      _this.afterPageload();
+    } else {
+      $('#bottom-left').remove();
+    }
 
   },
 
   afterPageload: function() {
     var _this = this;
 
-    _this.speakOnLoad = $('.speak-on-load').first();
+    if ( _this.speechSupported ) {
+      _this.speakOnLoad = $('.speak-on-load').first();
 
-    if (!_this.mute && _this.speakOnLoad.length) {
-      _this.loadElement(_this.speakOnLoad);
+      if (!_this.mute && _this.speakOnLoad.length) {
+        _this.loadElement(_this.speakOnLoad);
+      }
     }
   },
 
