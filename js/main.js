@@ -107,7 +107,7 @@ var ThreeScene = {
   reset: function() {
     var _this = this;
 
-    if (_this.percentLoaded === 0) {
+    if (_this.percentLoaded === 0 && $('.home').length ) {
       $('#loading').show();
       _this.addModels();
     }
@@ -614,10 +614,12 @@ TrophyModern.Ajaxy = {
 
     });
 
-    // For back button
-    window.onpopstate = function() {
-      _this.ajaxLoad(document.location.origin + document.location.pathname);
-    };
+    $(document).ready( function() {
+      // For back button
+      window.onpopstate = function() {
+        _this.ajaxLoad(document.location.origin + document.location.pathname);
+      };
+    });
   },
 
   reset: function() {
@@ -656,7 +658,7 @@ TrophyModern.Ajaxy = {
   ajaxBefore: function() {
     var _this = this;
 
-    if (ThreeScene.percentLoaded === 0) {
+    if (ThreeScene.percentLoaded === 0 && $('.home').length ) {
       $('#loading').show();
     }
     $('body').addClass('loading');
