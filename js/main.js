@@ -504,6 +504,7 @@ TrophyModern.Speech = {
   speakContent: undefined,
   speakOnLoad: undefined,
   speechSupported: false,
+  homeSpoken: false,
   init: function() {
     var _this = this;
 
@@ -511,6 +512,7 @@ TrophyModern.Speech = {
     if ('speechSynthesis' in window) {
 
       _this.speechSupported = true;
+
       $('.nav-mute-toggle').on({
         click: function() {
           _this.muteToggle();
@@ -518,6 +520,7 @@ TrophyModern.Speech = {
       });
 
       _this.afterPageload();
+
     } else {
       $('#bottom-left').remove();
     }
@@ -528,11 +531,18 @@ TrophyModern.Speech = {
     var _this = this;
 
     if ( _this.speechSupported ) {
+
       _this.speakOnLoad = $('.speak-on-load').first();
 
       if (!_this.mute && _this.speakOnLoad.length) {
-        _this.loadElement(_this.speakOnLoad);
+        if (!$('.home').length) {
+          _this.loadElement(_this.speakOnLoad);
+        } else if ($('.home').length && !_this.homeSpoken ) {
+          _this.loadElement(_this.speakOnLoad);
+          _this.homeSpoken = true;
+        }
       }
+
     }
   },
 
